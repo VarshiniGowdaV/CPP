@@ -7,9 +7,13 @@ class number
 public:
     number(int value);
     ~number();
+    void add();
     int getvalue();
     void setvalue(int value);
-    void add();
+    void sub();
+    int getsub();
+    void setsub(int value);
+
 
 };
 

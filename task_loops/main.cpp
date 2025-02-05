@@ -10,11 +10,11 @@ int main()
     {
         if (i <= 10)
         {
-            product *= i;
+            product =product*i;
         }
         else if (i <= 20)
         {
-            sum += i;
+            sum =sum+ i;
         }
         else
         {

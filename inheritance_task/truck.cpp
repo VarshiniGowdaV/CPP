@@ -11,6 +11,7 @@ Truck::~Truck()
 {
       std::cout<<"truck distructor"<<std::endl;
 }
-void Truck::loadCargo() {
+void Truck::loadCargo()
+{
     cout<<"capacity:"<<cargo_capacity<<endl;
 }

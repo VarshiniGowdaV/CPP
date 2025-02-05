@@ -12,6 +12,10 @@ number::~number()
 {
     cout << "Destructor called" << endl;
 }
+void number::add()
+{
+    m_value;
+}
 
 int number::getvalue()
 {
@@ -22,8 +26,15 @@ void number::setvalue(int value)
 {
     m_value = value;
 }
-
-void number::add()
+void number::sub()
 {
-    m_value++;
+    m_value;
+}
+int number::getsub()
+{
+    return m_value;
+}
+void number::setsub(int value)
+{
+    m_value=value;
 }

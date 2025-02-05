@@ -7,7 +7,7 @@ DeliveryTruck::DeliveryTruck(int speed, string color, int number_of_doors, int c
 {
     m_delivery_area=delivery_area;
       std::cout<<"deliveryTruck constructor"<<std::endl;
-   // cout<<"delivery area:"<<delivery_area<<endl;
+
 }
 DeliveryTruck::~DeliveryTruck()
 {

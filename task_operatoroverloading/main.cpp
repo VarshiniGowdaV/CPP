@@ -10,5 +10,10 @@ int main()
     num1.setvalue(20);
     cout << "Value: " << num1.getvalue() << endl;
 
+    number num2(20);
+    num2.sub();
+    num2.setsub(30);
+    cout<<"value:"<<num2.getsub()<<endl;
+
     return 0;
 }
