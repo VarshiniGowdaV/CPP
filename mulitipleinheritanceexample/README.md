@@ -1,0 +1,2 @@
+# mulitipleinheritanceexample
+# mulitipleinheritanceexample
