@@ -22,7 +22,7 @@ int main()
         }
     }
 
-    std::cout << "\nProduct : " << product << std::endl;
+    std::cout << "Product : " << product << std::endl;
     std::cout << "Sum : " << sum << std::endl;
 
     return 0;

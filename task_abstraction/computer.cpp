@@ -18,5 +18,5 @@ void Computer::startcomputer()
 void Computer::showdowncomputer()
 {
     pro.stopprocessor();
-    cout<<"computer showing down...."<<endl;
+    cout<<"computer showdown...."<<endl;
 }
