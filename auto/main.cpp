@@ -12,7 +12,7 @@ auto sum()
     cout<<c<<endl;
     return c;
 }
-auto main(* int)
+int main()
 {
     int a=10;
     auto b=66;

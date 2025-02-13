@@ -4,14 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        benz.cpp \
+        bike.cpp \
         car.cpp \
         main.cpp \
-        person.cpp \
-        varshi.cpp
+        person.cpp
 
 HEADERS += \
-    benz.h \
+    bike.h \
     car.h \
-    person.h \
-    varshi.h
+    person.h

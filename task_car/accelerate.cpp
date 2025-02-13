@@ -12,6 +12,5 @@ Accelerate::~Accelerate()
 }
 void Accelerate::increaseSpeed()
 {
-
     cout << "Car is accelerating "<< endl;
 }
