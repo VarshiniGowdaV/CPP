@@ -4,8 +4,6 @@
 using namespace std;
 class Wheel
 {
-    // string m_name;
-    // string m_colour;
 public:
     Wheel();
     ~Wheel();

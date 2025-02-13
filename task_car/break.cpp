@@ -15,5 +15,6 @@ Break::~Break()
 
 void Break::applyBreak()
 {
-    cout << "Break applied. Car is stopping..." << endl;
+    cout << "Break applied"<<endl;
+    cout<<"Engine is stopping" << endl;
 }

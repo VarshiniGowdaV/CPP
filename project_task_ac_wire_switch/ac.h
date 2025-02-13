@@ -6,7 +6,6 @@ using namespace std;
 
 class AC
 {
-private:
     string m_brand;
     string m_colour;
     float m_price;
@@ -16,8 +15,8 @@ public:
     AC();
     AC(string brand, string colour, float price, Wire* wire);
     ~AC();
-    void AcOn();
-    void AcOff();
+    void setWire(Wire *wire);
+    void acOn();
 };
 
 #endif // AC_H

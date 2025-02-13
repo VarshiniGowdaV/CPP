@@ -3,8 +3,9 @@
 #include <iostream>
 using namespace std;
 class AC;
-class Wire {
-private:
+
+class Wire
+{
     float m_thickness;
     float m_length;
     string m_colour;
@@ -14,12 +15,11 @@ private:
 
 public:
     Wire();
-    ~Wire();
     Wire(float thickness, float length, string colour, string brand, float price);
-    void display();
-    void setAC(AC* ac);
-    void powerOnAc();
-    void powerOffAc();
+    ~Wire();
+    void setMe(AC* ac);
+    void wireOn();
+
 };
 
 #endif // WIRE_H

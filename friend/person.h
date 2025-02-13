@@ -6,12 +6,15 @@ class Person
 {
     int m_age;
     std::string m_name;
+    std::string m_phnum;
+
 public:
-    Person(int age,std::string name);
+    Person(int age,std::string name,std::string phnum);
     Person();
     ~Person();
     void func1();
     friend class Varshi;
+    friend class Darshi;
 };
 
 #endif // PERSON_H

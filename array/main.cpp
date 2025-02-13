@@ -18,17 +18,7 @@ int main()
             min=array[i];
         }
     }
-    cout << "Reversed array: "<<endl;
-    for (int i = 3; i >= 0; i--)
-    {
-        cout << array[i] << " "<<endl;
-    }
     cout<<"greater number:"<<max<<endl;
     cout<<"smaller number:"<<min<<endl;
-    int array1[4]={1,2,3,4};
-    for (int i=3;i>=0;i--)
-    {
-        cout<<array1[i]<<" "<<endl;
-    }
     return 0;
 }

@@ -2,7 +2,8 @@
 #define BREAK_H
 #include <iostream>
 
-class Break {
+class Break
+{
 public:
     Break();
     ~Break();

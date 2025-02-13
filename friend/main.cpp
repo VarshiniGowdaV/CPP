@@ -1,6 +1,7 @@
 #include <iostream>
 #include "person.h"
 #include "varshi.h"
+#include "darshi.h"
 using namespace std;
 
 int main()
@@ -10,4 +11,8 @@ int main()
     Varshi varshi;
     varshi.func2();
     varshi.func3();
+    Darshi darshi;
+    darshi.func4();
+    darshi.func5();
+
 }

@@ -14,17 +14,19 @@ Car::~Car()
 
 void Car::carStart()
 {
-    cout << "Car is starting..." << endl;
-    engine.startEngine();
+     engine.startEngine();
+    cout << "Car is starting" << endl;
+
 }
 
 void Car::carStop()
 {
-    cout << "Car is stopping..." << endl;
     engine.stopEngine();
+    cout << "Car is stopped" << endl;
+
 }
 
-void Car::accelerater()  // Fixed function name
+void Car::accelerater()
 {
     isMoving = true;
     accelerate.increaseSpeed();
@@ -32,10 +34,11 @@ void Car::accelerater()  // Fixed function name
 
 void Car::applyBreak()
 {
-    if (isMoving) {
+    if (isMoving)
+    {
         break1.applyBreak();
         isMoving = false;
     } else {
-        cout << "Car is already stopped." << endl;
+        cout << "Car is already stopped" << endl;
     }
 }
