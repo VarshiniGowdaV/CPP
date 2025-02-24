@@ -16,10 +16,12 @@ private:
 public:
     Car();
     ~Car();
+    void insertKey();
     void carStart();
     void carStop();
     void accelerater();
     void applyBreak();
+    void keyremove();
 };
 
 #endif // CAR_H

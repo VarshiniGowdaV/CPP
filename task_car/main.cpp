@@ -5,9 +5,11 @@ using namespace std;
 int main()
 {
     Car myCar;
+    myCar.insertKey();
     myCar.carStart();
     myCar.accelerater();
     myCar.applyBreak();
     myCar.carStop();
+    myCar.keyremove();
     return 0;
 }

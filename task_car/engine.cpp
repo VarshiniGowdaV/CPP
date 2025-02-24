@@ -20,5 +20,5 @@ void Engine::startEngine()
 
 void Engine::stopEngine()
 {
-   // cout << "Engine stopped" << endl;
+    cout << "Engine stopped" << endl;
 }

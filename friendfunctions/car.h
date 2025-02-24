@@ -2,10 +2,11 @@
 #define CAR_H
 #include "benz.h"
 #include <iostream>
+using namespace std;
 class Car
 {
     int m_num;
-    std::string n_name;
+    std::string m_name;
 public:
     Car(int num,std::string name);
     Car();

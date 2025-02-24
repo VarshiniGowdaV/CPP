@@ -8,6 +8,7 @@ SOURCES += \
         break.cpp \
         car.cpp \
         engine.cpp \
+        key.cpp \
         main.cpp \
         wheel.cpp
 
@@ -16,4 +17,5 @@ HEADERS += \
     break.h \
     car.h \
     engine.h \
+    key.h \
     wheel.h

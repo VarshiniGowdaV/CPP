@@ -1,5 +1,8 @@
 #ifndef WIRE_H
 #define WIRE_H
+#include "finolex.h"
+#include "polycab.h"
+#include "havels.h"
 #include <iostream>
 using namespace std;
 class AC;

@@ -1,5 +1,8 @@
 #include "wire.h"
 #include "ac.h"
+#include "finolex.h"
+#include "havels.h"
+#include "polycab.h"
 Wire::Wire()
 {
     cout<<"Wire Default Constructor Called"<<endl;

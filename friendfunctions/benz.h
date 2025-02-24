@@ -1,6 +1,8 @@
 #ifndef BENZ_H
 #define BENZ_H
+//#include "car.h"
 #include <iostream>
+class Car;
 class Benz
 {
 public:

@@ -11,6 +11,10 @@ Car::~Car()
 {
     cout << "Car destructor called" << endl;
 }
+void Car::insertKey()
+{
+    cout<<"key inserted "<<endl;
+}
 
 void Car::carStart()
 {
@@ -41,4 +45,8 @@ void Car::applyBreak()
     } else {
         cout << "Car is already stopped" << endl;
     }
+}
+void Car::keyremove()
+{
+    cout<<"key removed "<<endl;
 }
