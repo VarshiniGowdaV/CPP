@@ -1,11 +1,16 @@
 #ifndef HAVELS_H
 #define HAVELS_H
-#include "wire.h"
-class Havels:public Wire
+class AC;
+class Havels
 {
+private:
+    AC *acptr;
 public:
     Havels();
     ~Havels();
+
+    void setac(AC* ac);
+    void wireOn();
 };
 
 #endif // HAVELS_H

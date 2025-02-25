@@ -1,13 +1,15 @@
-#ifndef BREAK_H
-#define BREAK_H
-#include <iostream>
+#ifndef BRAKE_H
+#define BRAKE_H
 
-class Break
+class Car;
+class Engine;
+class Brake
 {
+    Car *car;
 public:
-    Break();
-    ~Break();
-    void applyBreak();
+    Brake();
+    ~Brake();
+    void applybrake(Car *car,Engine *eng);
 };
 
-#endif // BREAK_H
+#endif

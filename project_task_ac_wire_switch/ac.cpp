@@ -1,30 +1,47 @@
 #include "ac.h"
-
+#include "polycab.h"
+#include"finolex.h"
+#include"havels.h"
 AC::AC()
 {
-    cout<<"AC Default Constructor called"<<endl;
+    cout<<"Default Constructor of AC called"<<endl;
+
 }
-AC::AC(string brand, string colour, float price, Wire* wire)
+
+AC::~AC()
 {
-    cout<<"AC Parameterized Constructor called"<<endl;
+    cout << "Destructor of AC called"<<endl;
+}
+
+AC::AC(string brand,string colour, float price)
+{
+    cout<<"Parametrized Constructor of AC called"<<endl;
 
     m_brand = brand;
     m_colour = colour;
-    m_price  = price;
-    m_wire = NULL;
-}
-AC::~AC()
-{
-    cout<<"AC Destructor called"<<endl;
+    m_price = price;
+    //m_wire = NULL;
 }
 
-void AC::setWire(Wire *wire)
+void AC::initializewiretoac(Polycab *wire)
 {
-    m_wire = wire;
-    m_wire->setMe(this);
+    m_pwire=wire;
+    m_pwire->setac(this);
+}
+
+void AC::initializewiretoac(Finolex *wire)
+{
+    m_fwire=wire;
+    m_fwire->setac(this);
+}
+
+void AC::initializewiretoac(Havels *wire)
+{
+    m_hwire=wire;
+    m_hwire->setac(this);
 }
 
 void AC::acOn()
 {
-    cout<<"AC turned on"<<endl;
+    cout << "AC is turned ON.\n";
 }

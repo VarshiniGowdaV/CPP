@@ -1,16 +1,23 @@
 #include "accelerate.h"
 #include <iostream>
 using namespace std;
-Accelerate::Accelerate()
+
+Accelerator::Accelerator()
 {
-    cout<<"Accelerate constructor called"<<endl;
+    cout<<"accelerator constructor called"<<endl;
 }
 
-Accelerate::~Accelerate()
+Accelerator::~Accelerator()
 {
-    cout<<"Accelerate destructor called"<<endl;
+    cout<<"accelerator destructor called"<<endl;
 }
-void Accelerate::increaseSpeed()
+
+void Accelerator::speedup()
 {
-    cout << "Car is accelerater "<< endl;
+    cout<<"Acceletrator speed incresed and car moved"<<endl;
 }
+
+// void Accelerator::speeddown()
+// {
+//     cout<<"Accelerator speed decreased"<<endl;
+// }

@@ -9,13 +9,11 @@ SOURCES += \
         car.cpp \
         engine.cpp \
         key.cpp \
-        main.cpp \
-        wheel.cpp
+        main.cpp
 
 HEADERS += \
     accelerate.h \
     break.h \
     car.h \
     engine.h \
-    key.h \
-    wheel.h
+    key.h

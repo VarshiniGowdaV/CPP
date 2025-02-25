@@ -1,13 +1,13 @@
-#ifndef ACCELERATE_H
-#define ACCELERATE_H
-#include <iostream>
-using namespace std;
-class Accelerate
-{
+#ifndef ACCELERATOR_H
+#define ACCELERATOR_H
 
+class Accelerator
+{
 public:
-    Accelerate();
-    ~Accelerate();
-    void increaseSpeed();
+    Accelerator();
+    ~Accelerator();
+    void speedup();
+    //void speeddown();
 };
-#endif // ACCELERATE_H
+
+#endif

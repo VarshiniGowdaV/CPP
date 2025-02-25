@@ -1,3 +1,4 @@
+
 #include "engine.h"
 #include <iostream>
 
@@ -5,20 +6,21 @@ using namespace std;
 
 Engine::Engine()
 {
-    cout << "Engine constructor called" << endl;
+    cout<<"Engine constructor called"<<endl;
 }
 
 Engine::~Engine()
 {
-    cout << "Engine destructor called" << endl;
+    cout<<"engine destructor called"<<endl;
 }
 
-void Engine::startEngine()
+void Engine::startengine()
 {
-    cout << "Engine started" << endl;
-}
+    cout<<"engine started"<<endl;
 
-void Engine::stopEngine()
+}
+void Engine::stopengine(Car *car)
 {
-    cout << "Engine stopped" << endl;
+    car->stopcar();
+    cout<<"engine off"<<endl;
 }

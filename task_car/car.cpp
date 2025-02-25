@@ -1,52 +1,28 @@
+
 #include "car.h"
+#include "engine.h"
 #include <iostream>
 using namespace std;
+
 Car::Car()
 {
-    cout << "Car constructor called" << endl;
-    isMoving = false;
+    cout<<"Car constructor called"<<endl;
 }
 
 Car::~Car()
 {
-    cout << "Car destructor called" << endl;
-}
-void Car::insertKey()
-{
-    cout<<"key inserted "<<endl;
+    cout<<"car class destructor called"<<endl;
 }
 
-void Car::carStart()
+void Car::startcar(Engine *eng)
 {
-     engine.startEngine();
-    cout << "Car is starting" << endl;
 
+    cout<<"car startred"<<endl;
+    this->eng = eng;
+    eng->startengine();
 }
 
-void Car::carStop()
+void Car::stopcar()
 {
-    engine.stopEngine();
-    cout << "Car is stopped" << endl;
-
-}
-
-void Car::accelerater()
-{
-    isMoving = true;
-    accelerate.increaseSpeed();
-}
-
-void Car::applyBreak()
-{
-    if (isMoving)
-    {
-        break1.applyBreak();
-        isMoving = false;
-    } else {
-        cout << "Car is already stopped" << endl;
-    }
-}
-void Car::keyremove()
-{
-    cout<<"key removed "<<endl;
+    cout<<"car stopped"<<endl;
 }

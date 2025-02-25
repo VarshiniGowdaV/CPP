@@ -1,12 +1,19 @@
+
 #ifndef FINOLEX_H
 #define FINOLEX_H
-#include "wire.h"
 
-class Finolex:public Wire
+class AC;
+class Finolex
 {
+private:
+    AC *acptr;
 public:
     Finolex();
     ~Finolex();
+
+    void setac(AC* ac);
+    void wireOn();
+
 };
 
-#endif // FINOLEX_H
+#endif

@@ -1,20 +1,23 @@
-#include "break.h"
-#include <iostream>
 
+#include "break.h"
+#include "car.h"
+#include "engine.h"
+#include <iostream>
 using namespace std;
 
-Break::Break()
+Brake::Brake()
 {
-    cout << "Break constructor called" << endl;
+    cout<<"brake constructor called"<<endl;
 }
 
-Break::~Break()
+Brake::~Brake()
 {
-    cout << "Break destructor called" << endl;
+    cout<<"brake destructor called"<<endl;
 }
 
-void Break::applyBreak()
+void Brake::applybrake(Car *car,Engine *eng)
 {
-    cout << "Break applied"<<endl;
-    //cout<<"Engine is stopping" << endl;
+    cout<<"brake applied"<<endl;
+    this->car = car;
+    eng->stopengine(car);
 }

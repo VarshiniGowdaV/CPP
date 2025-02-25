@@ -1,11 +1,13 @@
-#ifndef KEY_H
-#define KEY_H
+// #ifndef KEY_H
+// #define KEY_H
+// #include "engine.h"
+// class Key
+// {
+// public:
+//     Key();
+//     ~Key();
+//     void keyinsert(Engine *eng);
+//     void keyremove();
+// };
 
-class Key
-{
-public:
-    Key();
-    ~Key();
-};
-
-#endif // KEY_H
+// #endif // KEY_H

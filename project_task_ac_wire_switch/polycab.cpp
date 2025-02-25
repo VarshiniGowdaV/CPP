@@ -1,11 +1,23 @@
-#include "polycab.h"
-#include <iostream>
-using namespace std;
+
+#include "ac.h"
+
 Polycab::Polycab()
 {
-    cout<<"Polycab constructor called"<<endl;
+    cout<<"Wire Default Constructor Called"<<endl;
 }
+
 Polycab::~Polycab()
 {
-    cout<<"Polycab destructor called"<<endl;
+    cout<<"Wire Destructor Called"<<endl;
+}
+
+void Polycab::setac(AC *ac)
+{
+    acptr = ac;
+}
+
+void Polycab::wireOn()
+{
+    cout<<"polycab wire on"<<endl;
+    acptr->acOn();
 }

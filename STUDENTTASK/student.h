@@ -1,30 +1,21 @@
 #ifndef STUDENT_H
 #define STUDENT_H
-
 #include <iostream>
-#include <string>
-#include <unordered_map>
+using namespace std;
 
-class Student {
+class Student
+{
 private:
-    std::string m_name;
     int m_id;
+    string m_name;
     int m_age;
-
 public:
-    Student(std::string name, int id, int age);
+    Student();
     ~Student();
-
-    std::string getName();
-    int getAge();
-    int getId();
-    void setName(std::string& name);
-    void setAge(int age);
-    void setId(int id);
-    void display();
-    friend std::ostream& operator<<(std::ostream& os, const Student& s);
-    template <typename T>
-    T setAttribute(const std::string& attribute, T value);
+    Student(int id,string name,int age);
+    int getid() const;
+    string getname() const;
+    int getage() const;
 };
 
-#endif // STUDENT_H
+#endif

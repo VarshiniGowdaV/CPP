@@ -1,27 +1,18 @@
+
 #ifndef CAR_H
 #define CAR_H
-
-#include <iostream>
 #include "engine.h"
-#include "accelerate.h"
-#include "break.h"
 
-class Car {
+class Engine;
+class Car
+{
 private:
-    Engine engine;
-    Accelerate accelerate;
-    Break break1;
-    bool isMoving;
-
+    Engine *eng;
 public:
     Car();
     ~Car();
-    void insertKey();
-    void carStart();
-    void carStop();
-    void accelerater();
-    void applyBreak();
-    void keyremove();
+    void startcar(Engine *eng);
+    void stopcar();
 };
 
-#endif // CAR_H
+#endif

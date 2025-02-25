@@ -1,14 +1,18 @@
 #ifndef ENGINE_H
 #define ENGINE_H
+#include "car.h"
+#include "accelerate.h"
 
-#include <iostream>
-
-class Engine {
+class Car;
+class Engine
+{
+private:
+    Accelerator *ac;
 public:
     Engine();
     ~Engine();
-    void startEngine();
-    void stopEngine();
+    void startengine();
+    void stopengine(Car *car);
 };
 
-#endif // ENGINE_H
+#endif
