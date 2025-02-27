@@ -8,4 +8,6 @@ Polycab::Polycab()
 Polycab::~Polycab()
 {
     cout<<"Polycab destructor called"<<endl;
+    delete b;
 }
+

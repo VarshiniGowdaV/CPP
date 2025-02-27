@@ -8,4 +8,5 @@ Finolex::Finolex()
 Finolex::~Finolex()
 {
     cout<<"Finolex destructor called"<<endl;
+    delete a;
 }

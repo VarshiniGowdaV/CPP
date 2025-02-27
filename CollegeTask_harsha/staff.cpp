@@ -14,36 +14,36 @@ Staff::~Staff()
 
 Staff::Staff(int id, string name,string department)
 {
-    this->id=id;
-    this->name=name;
-    this->department=department;
+    this->m_id=id;
+    this->m_name=name;
+    this->m_department=department;
     cout<<"staff details are"<<id<<" "<<name<<" "<<department<<" "<<endl;
 }
 void Staff::display() const
 {
-    cout<<id<<" "<<name<<" "<<department<<endl;
+    cout<<m_id<<" "<<m_name<<" "<<m_department<<" "<<endl;
 }
 
 void Staff::displaystaff() const
 {
-    for(const auto &Staff:stafflist)
+    for(const auto &Staff:staffData)
     {
         Staff.display();
     }
 }
 void Staff::addstaff(int id, std::string name,std::string department)
 {
-    stafflist.push_back(Staff(id,name,department));
+    staffData.push_back(Staff(id,name,department));
 }
 
 void Staff::deletestaff(int id)
 {
-    for(auto i=stafflist.begin();i!=stafflist.end();++i)
+    for(auto i=staffData.begin();i!=staffData.end();++i)
     {
-        if(i->getid()==id)
+        if(i->getid(id)==id)
         {
-            stafflist.erase(i);
-            cout<<"staff with id"<< i->getid()<<"removed"<<endl;
+            staffData.erase(i);
+            cout<<"staff with id"<< i->getid(id)<<"removed"<<endl;
             return;
         }
     }
@@ -52,9 +52,9 @@ void Staff::deletestaff(int id)
 
 void Staff::updatestaff(int id)
 {
-    for(auto &Staff:stafflist)
+    for(auto &Staff:staffData)
     {
-        if(Staff.getid()==id)
+        if(Staff.getid(id)==id)
         {
             string name;
             string department;
@@ -72,9 +72,9 @@ void Staff::updatestaff(int id)
 
 void Staff::findstaff(int id)
 {
-    for(auto i=stafflist.begin();i!=stafflist.end();++i)
+    for(auto i=staffData.begin();i!=staffData.end();++i)
     {
-        if(i->getid()==id)
+        if(i->getid(id)==id)
         {
             cout<<"staff found"<<endl;
             return;
@@ -83,12 +83,12 @@ void Staff::findstaff(int id)
     cout<<"staff not found"<<endl;
 }
 
-int Staff::getid()
+int Staff::getid(int id)
 {
     return id;
 }
 void Staff::setdetails(string name,string department)
 {
-    this->name=name;
-    this->department=department;
+    this->m_name=name;
+    this->m_department=department;
 }

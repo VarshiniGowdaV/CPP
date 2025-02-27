@@ -57,7 +57,7 @@ int main()
         case 4:
         {
             cout<<"display student list"<<endl;
-            studentobj.displaystudents();
+            studentobj.displaystudent();
             break;
         }
 

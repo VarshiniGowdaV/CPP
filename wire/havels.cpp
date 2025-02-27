@@ -8,4 +8,5 @@ Havels::Havels()
 Havels::~Havels()
 {
     cout<<"Havels destructor called"<<endl;
+    delete c;
 }

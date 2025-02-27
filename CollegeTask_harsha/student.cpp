@@ -15,36 +15,36 @@ Student::~Student()
 
 Student::Student(int id, string name, int age)
 {
-    this->id=id;
-    this->name=name;
-    this->age=age;
+    this->m_id=id;
+    this->m_name=name;
+    this->m_age=age;
     cout<<"student details are"<<id<<" "<<name<<" "<<age<<" "<<endl;
 }
 void Student::display() const
 {
-    cout<<id<<" "<<name<<" "<<age<<endl;
+    cout<<m_id<<" "<<m_name<<" "<<m_age<<endl;
 }
 
-void Student::displaystudents() const
+void Student::displaystudent() const
 {
-    for(const auto &student:studentlist)
+    for(const auto &student:studentData)
     {
         student.display();
     }
 }
 void Student::addstudent(int id, string name, int age)
 {
-    studentlist.emplace_back(id,name,age);
+    studentData.emplace_back(id,name,age);
 }
 
 void Student::deletestudent(int id)
 {
-    for(auto i=studentlist.begin();i!=studentlist.end();++i)
+    for(auto i=studentData.begin();i!=studentData.end();++i)
     {
-        if(i->getid()==id)
+        if(i->getid(id)==id)
         {
-            studentlist.erase(i);
-            cout<<"student with id"<< i->getid()<<"removed"<<endl;
+            studentData.erase(i);
+            cout<<"student with id"<< i->getid(id)<<"removed"<<endl;
             return;
         }
     }
@@ -53,9 +53,9 @@ void Student::deletestudent(int id)
 
 void Student::updatestudent(int id)
 {
-    for(auto &student:studentlist)
+    for(auto &student:studentData)
     {
-        if(student.getid()==id)
+        if(student.getid(id)==id)
         {
             string name;
             int age;
@@ -73,9 +73,9 @@ void Student::updatestudent(int id)
 
 void Student::findstudent(int id)
 {
-    for(auto i=studentlist.begin();i!=studentlist.end();++i)
+    for(auto i=studentData.begin();i!=studentData.end();++i)
     {
-        if(i->getid()==id)
+        if(i->getid(id)==id)
         {
             cout<<"student found"<<endl;
             return;
@@ -84,12 +84,12 @@ void Student::findstudent(int id)
     cout<<"student not found"<<endl;
 }
 
-int Student::getid()
+int Student::getid(int id)
 {
     return id;
 }
 void Student::setdetails(string name, int age)
 {
-    this->name=name;
-    this->age=age;
+    this->m_name=name;
+    this->m_age=age;
 }

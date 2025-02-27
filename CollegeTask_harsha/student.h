@@ -7,24 +7,25 @@ using namespace std;
 class Student
 {
 private:
-    int id;
-    string name;
-    int age;
+    int m_id;
+    std::string m_name;
+    int m_age;
 public:
     Student();
     ~Student();
-    list <Student> studentlist;
-    Student(int id,string name,int age);
+    list<Student> studentData;
+    Student(int id,std::string name,int age);
 
     void display() const;
-    void displaystudents() const;
+    void displaystudent() const;
 
-    void addstudent(int id,string name,int age);
+    void addstudent(int id,std::string name,int age);
     void deletestudent(int id);
     void updatestudent(int id);
     void findstudent(int id);
 
-    int getid();
+    int getid(int id);
     void setdetails(string name,int age);
 };
-#endif
+
+#endif // STUDENT_H
