@@ -21,6 +21,7 @@ public:
 
     void addstudent(int id,std::string name,int age);
     void deletestudent(int id);
+
     void updatestudent(int id);
     void findstudent(int id);
 
