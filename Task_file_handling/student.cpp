@@ -1,23 +1,19 @@
 #include "student.h"
-
-Student::Student()
+#include <iostream>
+using namespace std;
+Student::Student(std::string name,std::string moblienumber,int age,std::string usn)
 {
-    cout<<"default student constructor called"<<endl;
+    m_name=name;
+    m_mobilenumber=moblienumber;
+    m_age=age;
+    m_usn=usn;
+    cout<<"student constructor called "<<endl;
+    cout<<"name: "<<m_name<<endl;
+    cout<<"moblienumber: "<<m_mobilenumber<<endl;
+    cout<<"age: "<<m_age<<endl;
+    cout<<"usn: "<<m_usn<<endl;
 }
 Student::~Student()
 {
-    cout<<"student destructor called "<<endl;
-}
-Student::Student(string name, int age, string usn, string mobile_number)
-{
-    m_name=name;
-    m_age=age;
-    m_usn=usn;
-    m_mobile_number=mobile_number;
-   // cout<<"parameter constructor called "<<endl;
-
-}
-void Student::display()
-{
-    cout<<m_name<<" "<<m_age<<" "<<m_usn<<" "<<m_mobile_number<<" "<<endl;
+    cout<<"student destructor called"<<endl;
 }

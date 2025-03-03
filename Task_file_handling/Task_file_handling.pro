@@ -4,18 +4,18 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
-        csvdata.cpp \
+        csv.cpp \
         fileoperation.cpp \
-        jsondata.cpp \
+        json.cpp \
         main.cpp \
         student.cpp \
-        studentmanagement.cpp \
-        xmldata.cpp
+        studentmanageager.cpp \
+        xml.cpp
 
 HEADERS += \
-    csvdata.h \
+    csv.h \
     fileoperation.h \
-    jsondata.h \
+    json.h \
     student.h \
-    studentmanagement.h \
-    xmldata.h
+    studentmanageager.h \
+    xml.h
