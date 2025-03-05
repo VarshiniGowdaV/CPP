@@ -2,16 +2,17 @@
 #define STUDENT_H
 #include "personaldetails.h"
 #include <string>
+using namespace std;
 
 class Student:public PersonalDetails
 {
 public:
     //Student();
-    Student(std::string studentID, std::string studentname, int studentNumber);
-    std::string getstudentID();
-    std::string getstudentname();
-    int getstudentNumber();
-    void set(std::string name, int mobileNumber);
+    Student(int id, std::string name, int age,std::string department,std::string mobile_number,std::string address);
+    std::string getstudentid(int id);
+    std::string getstudentname(std::string name);
+    int getstudentmobile_number(std::string smobile_number);
+    void set(int id, std::string name, int age,std::string department,std::string mobile_number,std::string address);
     ~Student();
 };
 

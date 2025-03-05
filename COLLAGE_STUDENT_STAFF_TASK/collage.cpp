@@ -9,7 +9,3 @@ College::~College()
 {
     cout<<"collage destructor called"<<endl;
 }
-void College::addStaff(string staffID, string staffname, int staffnumber)
-{
-
-}

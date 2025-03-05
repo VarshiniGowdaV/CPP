@@ -1,20 +1,19 @@
 #ifndef PERSONALDETAILS_H
 #define PERSONALDETAILS_H
-#include "string"
-class PersonalDetails
+#include <iostream>
+using namespace std;
+class Personaldetails
 {
 protected:
     int m_id;
     std::string m_name;
     int m_age;
-    std::string m_department;
     std::string m_mobile_number;
     std::string m_address;
+
 public:
-    PersonalDetails();
-    ~PersonalDetails();
-
-
+    Personaldetails();
+    ~Personaldetails();
 };
 
 #endif // PERSONALDETAILS_H

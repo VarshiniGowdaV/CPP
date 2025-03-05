@@ -1,24 +1,24 @@
-#ifndef MAGAMENT_H
-#define MAGAMENT_H
+#ifndef MANAGEMENT_H
+#define MANAGEMENT_H
+#include <iostream>
+using namespace std;
 #include <list>
 #include <vector>
-#include<iostream>
-using namespace std;
-class Student;
-class Staff;
-class Magament
+#include "student.h"
+#include "staff.h"
+class Management
 {
 private:
-    std::list<Student>*m_studentData;
-    std::vector<Staff>*m_staffData;
+    std::list<Student>studentdata;
+    std::vector<Staff>staffdata;
 public:
-    Magament();
-    ~Magament();
+    Management();
+    ~Management();
 
     void addStudent(int id, std::string name, int age, std::string department, std::string mobile_number, std::string address);
     void deleteStudent(int id);
     void updateStudent(int id, std::string name, int age,std::string department,std::string mobile_number,std::string address);
-    void displayStudent();
+    void displayStudent() const;
 
     void addStaff( int id,std::string name,int age,std::string department,std::string mobile_number,std::string address ,float salary);
     void deleteStaff(int id);
@@ -27,4 +27,4 @@ public:
 
 };
 
-#endif // MAGAMENT_H
+#endif // MANAGEMENT_H
