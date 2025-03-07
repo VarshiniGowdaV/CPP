@@ -1,17 +1,27 @@
+
 #ifndef STUDENT_H
 #define STUDENT_H
-#include<iostream>
-class Student
-{
+
+#include <iostream>
+using namespace std;
+
+class Student {
 private:
-    std::string m_name;
-    std::string m_mobilenumber;
-    int m_age;
-    std::string m_usn;
+    string name;
+    int age;
+    int usn;
+    string mobileNumber;
+
 public:
-    Student(std::string name,std::string mobilenumber,int age,std::string usn);
-    ~Student();
     Student();
+    Student(string name, int age, int usn, string number);
+
+    string getName() const { return name; }
+    int getAge() const { return age; }
+    int getUSN() const { return usn; }
+    string getMobileNumber() const { return mobileNumber; }
+
+    void display() const;
 };
 
 #endif // STUDENT_H

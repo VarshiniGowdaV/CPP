@@ -1,19 +1,14 @@
+
 #ifndef CSV_H
 #define CSV_H
-#include "student.h"
-#include<fileoperation.h>
-#include <list>
-#include "sstream"
-class CSV:public Fileoperation
-{
+
+#include "fileoperation.h"
+#include <fstream>
+
+class CSV : public FileOperations {
 public:
-    CSV();
-    ~CSV();
-    std::list<Student> ReadData() override;
-
-    void writedatafromcsvfile(const std::string& filename);
-    static void readdatafromcsvfile(const std::string& filename);
-
+    void writeData(const list<Student>& students) override;
+    list<Student> readData() override;
 };
 
 #endif // CSV_H

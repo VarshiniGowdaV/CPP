@@ -1,17 +1,26 @@
-#ifndef STUDENTMAGAGEAGER_H
-#define STUDENTMAGAGEAGER_H
-#include "fileoperation.h"
-#include <list>
+
+#ifndef STUDENTMANAGEMENT_H
+#define STUDENTMANAGEMENT_H
+
 #include <iostream>
 #include "student.h"
+#include "fileoperation.h"
+#include "txt.h"
 #include "csv.h"
-class Studentmagageager
-{
+#include <list>
+
+class StudentManagement {
+private:
+    list<Student> students;
+    FileOperations* fileHandler;
+
 public:
-    Studentmagageager();
-    ~Studentmagageager();
-    Fileoperation *fp;
-    std::list<Student>studentmagageager;
+    StudentManagement();
+    ~StudentManagement();
+    void addStudent();
+    void saveData(int choice);
+    void loadData(int choice);
+    void display();
 };
 
-#endif // STUDENTMAGAGEAGER_H
+#endif // STUDENTMANAGEMENT_H

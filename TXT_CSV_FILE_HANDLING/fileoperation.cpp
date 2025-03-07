@@ -1,11 +1,8 @@
+
 #include "fileoperation.h"
-#include <iostream>
-using namespace std;
-Fileoperation::Fileoperation()
+
+
+FileOperations::~FileOperations()
 {
-    cout<<"Fileoperation constructor called"<<endl;
-}
-Fileoperation::~Fileoperation()
-{
-    cout<<"Fileoperation destructor called"<<endl;
+    cout<<"file operation virtual destructor called"<<endl;
 }

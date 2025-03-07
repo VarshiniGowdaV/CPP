@@ -1,13 +1,18 @@
-#ifndef FILEOPERATION_H
-#define FILEOPERATION_H
+
+#ifndef FILEOPERATIONS_H
+#define FILEOPERATIONS_H
+
 #include <list>
 #include "student.h"
-class Fileoperation
-{
+#include <iostream>
+
+using namespace std;
+
+class FileOperations {
 public:
-    Fileoperation();
-    virtual ~Fileoperation();
-    virtual std::list<Student> ReadData()=0;
+    virtual ~FileOperations();
+    virtual void writeData(const list<Student>& students) = 0;
+    virtual list<Student> readData() = 0;
 };
 
-#endif // FILEOPERATION_H
+#endif
