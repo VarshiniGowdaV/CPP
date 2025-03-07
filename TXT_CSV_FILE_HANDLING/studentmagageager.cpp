@@ -1,5 +1,5 @@
 
-#include "studentmagageager.h".h"
+#include "studentmagageager.h"
 
 StudentManagement::StudentManagement() : fileHandler(nullptr) {}
 
@@ -38,17 +38,19 @@ void StudentManagement::loadData(int choice) {
     delete fileHandler;
     if(choice==1)
     {
-        new TXT;
+       fileHandler= new TXT;
     }
     else
     {
-        new CSV();
+       fileHandler= new CSV();
     }
     students = fileHandler->readData();
 }
 
-void StudentManagement::display() {
-    for (const auto& student : students) {
+void StudentManagement::display()
+{
+    for (const auto& student : students)
+    {
         student.display();
     }
 }

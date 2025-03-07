@@ -2,7 +2,7 @@
 #include "txt.h"
 
 void TXT::writeData(const list<Student>& students) {
-    ofstream file("students.txt");
+    ofstream file("students.txt",ios::app);
     if (!file) {
         cout << "Error opening TXT file for writing!" << endl;
         return;
@@ -24,10 +24,12 @@ list<Student> TXT::readData() {
         return students;
     }
 
-    string name, mobile;
     int age, usn;
+    string name, mobile;
 
-    while (file >> name >> age >> usn >> mobile) {
+    while (getline(file, name, ' ') && file >> age && file.ignore() &&
+           file >> usn && file.ignore() && getline(file, mobile))
+    {
         students.push_back(Student(name, age, usn, mobile));
     }
     file.close();
