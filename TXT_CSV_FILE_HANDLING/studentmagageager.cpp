@@ -50,7 +50,7 @@ void StudentManagement::loadData(int choice)
     }
     else
     {
-       fileHandler= new CSV();
+       fileHandler= new CSV;
     }
     students = fileHandler->readData();
 }
