@@ -1,11 +1,17 @@
-
 #include "studentmagageager.h"
 
-StudentManagement::StudentManagement() : fileHandler(nullptr) {}
+StudentManagement::StudentManagement() : fileHandler(nullptr)
+{
 
-StudentManagement::~StudentManagement() { delete fileHandler; }
+}
 
-void StudentManagement::addStudent() {
+StudentManagement::~StudentManagement()
+{
+    delete fileHandler;
+}
+
+void StudentManagement::addStudent()
+{
     string name, mobile;
     int age, usn;
 
@@ -21,7 +27,8 @@ void StudentManagement::addStudent() {
     students.push_back(Student(name, age, usn, mobile));
 }
 
-void StudentManagement::saveData(int choice) {
+void StudentManagement::saveData(int choice)
+{
     delete fileHandler;
     if(choice==1)
     {
@@ -34,7 +41,8 @@ void StudentManagement::saveData(int choice) {
     fileHandler->writeData(students);
 }
 
-void StudentManagement::loadData(int choice) {
+void StudentManagement::loadData(int choice)
+{
     delete fileHandler;
     if(choice==1)
     {

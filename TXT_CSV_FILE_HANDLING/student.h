@@ -16,10 +16,10 @@ public:
     Student();
     Student(string name, int age, int usn, string number);
 
-    string getName() const { return name; }
-    int getAge() const { return age; }
-    int getUSN() const { return usn; }
-    string getMobileNumber() const { return mobileNumber; }
+    string getName() const;
+    int getAge() const ;
+    int getUSN() const ;
+    string getMobileNumber() const;
 
     void display() const;
 };

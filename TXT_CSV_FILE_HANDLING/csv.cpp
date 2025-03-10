@@ -1,7 +1,7 @@
-
 #include "csv.h"
 
-void CSV::writeData(const list<Student>& students) {
+void CSV::writeData(const list<Student>& students)
+{
     ofstream file("STUDENT.csv",ios::app);
     if (!file)
     {
@@ -18,10 +18,12 @@ void CSV::writeData(const list<Student>& students) {
     cout << "Data written to CSV successfully." << endl;
 }
 
-list<Student> CSV::readData() {
+list<Student> CSV::readData()
+{
     list<Student> students;
     ifstream file("STUDENT.csv");
-    if (!file) {
+    if (!file)
+    {
         cout << "Error opening CSV file for reading!" << endl;
         return students;
     }

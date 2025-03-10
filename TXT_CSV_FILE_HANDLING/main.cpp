@@ -8,7 +8,8 @@ int main() {
     StudentManagement sm;
     int choice;
 
-    while (true) {
+    while (true)
+    {
         cout << "\n1. Add Student\n2. Save to TXT\n3. Save to CSV\n4. Load from TXT\n5. Load from CSV\n6. Display\n7. Exit\nChoice: ";
         cin >> choice;
 

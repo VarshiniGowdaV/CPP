@@ -1,14 +1,17 @@
 
 #include "txt.h"
 
-void TXT::writeData(const list<Student>& students) {
+void TXT::writeData(const list<Student>& students)
+{
     ofstream file("students.txt",ios::app);
-    if (!file) {
+    if (!file)
+    {
         cout << "Error opening TXT file for writing!" << endl;
         return;
     }
 
-    for (const auto& student : students) {
+    for (const auto& student : students)
+    {
         file << student.getName() << " " << student.getAge() << " "
              << student.getUSN() << " " << student.getMobileNumber() << endl;
     }
@@ -16,10 +19,12 @@ void TXT::writeData(const list<Student>& students) {
     cout << "Data written to TXT successfully." << endl;
 }
 
-list<Student> TXT::readData() {
+list<Student> TXT::readData()
+{
     list<Student> students;
     ifstream file("students.txt");
-    if (!file) {
+    if (!file)
+    {
         cout << "Error opening TXT file for reading!" << endl;
         return students;
     }
