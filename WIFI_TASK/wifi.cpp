@@ -1,6 +1,6 @@
 #include "WIFI.h"
 #include <iostream>
-
+#include <algorithm>
 using namespace std;
 
 WIFI::WIFI()
@@ -68,7 +68,7 @@ void WIFI::addWiFi(list<WIFI>& wifiList)
     cout << "WiFi Network Added Successfully!\n";
 }
 
-void WIFI::displayWiFi(const list<WIFI>& wifiList)
+void WIFI::displayWiFi(const std::list<WIFI>& wifiList)
 {
     if (wifiList.empty())
     {
@@ -76,10 +76,20 @@ void WIFI::displayWiFi(const list<WIFI>& wifiList)
         return;
     }
 
-    cout << "\n--- WiFi Networks ---\n";
-    for (const auto& wifi : wifiList)
+    // std::list<WIFI> sortedWiFi = wifiList;
+
+    // sortedWiFi.sort([](const WIFI &a, const WIFI &b) {
+    //     if (a.getStatus() == "Connected" && b.getStatus() != "Connected")
+    //         return true;
+    //     if (a.getStatus() != "Connected" && b.getStatus() == "Connected")
+    //         return false;
+    //     return a.getStrength() > b.getStrength();
+    // });
+
+    cout << "\n--- WiFi Networks (Connected First) ---\n";
+    for (const auto &wifi : /*sorted*/wifiList)
     {
-        cout << "WiFi Name: " << wifi.getName() <<endl;
+        cout << "WiFi Name: " << wifi.getName() << endl;
         cout << "Status: " << wifi.getStatus() << endl;
         cout << "Strength: " << wifi.getStrength() << endl;
     }

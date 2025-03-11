@@ -3,7 +3,7 @@
 
 #include <string>
 #include <list>
-
+#include <iostream>
 class WIFI
 {
 private:
@@ -26,6 +26,7 @@ public:
 
     static void addWiFi(std::list<WIFI>& wifiList);
     static void displayWiFi(const std::list<WIFI>& wifiList);
+
 };
 
 #endif
