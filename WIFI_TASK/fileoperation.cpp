@@ -16,7 +16,7 @@ Fileoperation::~Fileoperation()
 
 void Fileoperation::writeData(const list<WIFI> &wifi)
 {
-    ofstream file("WIFI.csv", ios::app);
+    ofstream file("WIFI.csv",ios::app);
     if (!file)
     {
         cout << "Error opening CSV file for writing!" << endl;

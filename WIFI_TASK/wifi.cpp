@@ -1,11 +1,13 @@
 #include "WIFI.h"
 #include <iostream>
+#include <list>
 #include <algorithm>
+
 using namespace std;
 
 WIFI::WIFI()
 {
-    cout<<"WIFI default constructor called"<<endl;
+    cout << "WIFI default constructor called" << endl;
 }
 
 WIFI::WIFI(string name, string password, string status, int strength)
@@ -18,21 +20,24 @@ WIFI::WIFI(string name, string password, string status, int strength)
 
 WIFI::~WIFI()
 {
-    cout<<"WIFI destructor called"<<endl;
+    cout << "WIFI destructor called" << endl;
 }
 
 string WIFI::getName() const
 {
     return m_name;
 }
+
 string WIFI::getPassword() const
 {
     return m_password;
 }
+
 string WIFI::getStatus() const
 {
     return m_status;
 }
+
 int WIFI::getStrength() const
 {
     return m_strength;
@@ -68,7 +73,7 @@ void WIFI::addWiFi(list<WIFI>& wifiList)
     cout << "WiFi Network Added Successfully!\n";
 }
 
-void WIFI::displayWiFi(const std::list<WIFI>& wifiList)
+void WIFI::displayWiFi(const list<WIFI>& wifiList)
 {
     if (wifiList.empty())
     {
@@ -76,18 +81,22 @@ void WIFI::displayWiFi(const std::list<WIFI>& wifiList)
         return;
     }
 
-    // std::list<WIFI> sortedWiFi = wifiList;
+    list<WIFI> sortedList = wifiList;
 
-    // sortedWiFi.sort([](const WIFI &a, const WIFI &b) {
-    //     if (a.getStatus() == "Connected" && b.getStatus() != "Connected")
-    //         return true;
-    //     if (a.getStatus() != "Connected" && b.getStatus() == "Connected")
-    //         return false;
-    //     return a.getStrength() > b.getStrength();
-    // });
+    sortedList.sort([](const WIFI& a, const WIFI& b){
+        if (a.m_status == "connected" && b.m_status != "connected")
+            return true;
+        if (a.m_status != "connected" && b.m_status == "connected")
+            return false;
+        if (a.m_status == "saved" && b.m_status == "available")
+            return true;
+        if (a.m_status == "available" && b.m_status == "saved")
+            return false;
+        return a.m_strength > b.m_strength;
+    });
 
     cout << "\n--- WiFi Networks (Connected First) ---\n";
-    for (const auto &wifi : /*sorted*/wifiList)
+    for (const auto& wifi : sortedList)
     {
         cout << "WiFi Name: " << wifi.getName() << endl;
         cout << "Status: " << wifi.getStatus() << endl;
