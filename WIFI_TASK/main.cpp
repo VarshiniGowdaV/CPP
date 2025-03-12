@@ -30,7 +30,7 @@ int main()
         cout << "5. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
-        cin.ignore(); // Clear input buffer
+        cin.ignore();
 
         switch (static_cast<MenuChoice>(choice))
         {

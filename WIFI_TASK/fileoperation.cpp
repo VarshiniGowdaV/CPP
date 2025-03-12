@@ -9,7 +9,6 @@ Fileoperation::Fileoperation()
 {
     cout << "fileoperation constructor called" << endl;
 }
-
 Fileoperation::~Fileoperation()
 {
     cout << "fileoperation destructor called" << endl;
@@ -46,8 +45,7 @@ list<WIFI> Fileoperation::readData()
     string name, password, status;
     int strength;
 
-    while (getline(file, name, ',') && getline(file, password, ',') &&
-           getline(file, status, ',') && file >> strength && file.ignore())
+    while (getline(file, name, ',') && getline(file, password, ',') &&  getline(file, status, ',') && file >> strength && file.ignore())
     {
         wifi.push_back(WIFI(name, password, status, strength));
     }
