@@ -1,60 +1,59 @@
-#include "WIFI.h"
-#include "fileoperation.h"
 #include <iostream>
 #include <list>
+#include "wifi.h"
+#include "fileoperation.h"
+#include "wifimanager.h"
 
 using namespace std;
 
-enum MenuChoice
-{
-    ADD_WIFI = 1,
-    DISPLAY_WIFI,
-    SAVE_DATA,
-    LOAD_DATA,
-    EXIT
-};
+enum choice { display = 1, sorting, connection };
 
 int main()
 {
-    list<WIFI> wifiList;
-    Fileoperation fileOp;
-    int choice;
+    int userChoice;
 
-    do
+    Wifimanager wifimanobj;
+    std::list<Wifi> wifilist;
+
+   /* wifilist.push_back(Wifi("varshi", 60, "connected", 12345));
+    wifilist.push_back(Wifi("pallu", 70, "available", 12345));
+    wifilist.push_back(Wifi("likitha", 80, "available", 12345));
+    wifilist.push_back(Wifi("dharshini", 50, "saved", 12345));
+    wifilist.push_back(Wifi("darshan", 56, "saved", 12345));
+    wifilist.push_back(Wifi("anu", 66 , "saved" , 12345));
+    wifilist.push_back(Wifi("thanu", 55 , "saved" , 12345));
+    wifilist.push_back(Wifi("prathik", 63, "available", 12345));
+    wifilist.push_back(Wifi("praneeth", 65, "available", 12345));*/
+
+    cout << "Enter your choice:" << endl;
+    cout << "1. Display available networks" << endl;
+    cout << "2. Sorting" << endl;
+    cout << "3. Connection" << endl;
+    cin >> userChoice;
+
+    switch (userChoice)
     {
-        cout << "\n--- WiFi Management System ---\n";
-        cout << "1. Add WiFi Network\n";
-        cout << "2. Display WiFi Networks\n";
-        cout << "3. Save Data to File\n";
-        cout << "4. Load Data from File\n";
-        cout << "5. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
-        cin.ignore();
+    case display:
+        wifimanobj.readData();
+        wifimanobj.writeData();
+        wifimanobj.display();
+        break;
 
-        switch (static_cast<MenuChoice>(choice))
-        {
-        case ADD_WIFI:
-            WIFI::addWiFi(wifiList);
-            break;
-        case DISPLAY_WIFI:
-            WIFI::displayWiFi(wifiList);
-            break;
-        case SAVE_DATA:
-            fileOp.writeData(wifiList);
-            cout << "Data saved successfully.\n";
-            break;
-        case LOAD_DATA:
-            wifiList = fileOp.readData();
-            cout << "Data loaded successfully.\n";
-            break;
-        case EXIT:
-            cout << "Exiting program...\n";
-            break;
-        default:
-            cout << "Invalid choice! Please try again.\n";
-        }
-    } while (choice != EXIT);
+    case sorting:
+        wifimanobj.sortwifi();
+        wifimanobj.display();
+        break;
+
+    case connection:
+        wifimanobj.connection();
+        wifimanobj.sortwifi();
+        wifimanobj.display();
+        break;
+
+    default:
+        cout << "Invalid choice. Please enter a valid option." << endl;
+        break;
+    }
 
     return 0;
 }
