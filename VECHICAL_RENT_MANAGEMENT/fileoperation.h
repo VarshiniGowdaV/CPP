@@ -1,22 +1,25 @@
-// #ifndef FILEOPERATION_H
-// #define FILEOPERATION_H
+#ifndef FILEOPERATION_H
+#define FILEOPERATION_H
 
-// #include <list>
-// #include "vechical.h"
-// #include "bike.h"
-// #include "car.h"
-// #include "custamerdetails.h"
+#include <vector>
+#include <list>
+#include "bike.h"
+#include "car.h"
+#include "custamerdetails.h"
 
-// class FileOperation {
-// public:
-//     FileOperation();
-//     ~FileOperation();
+class FileOperation {
+public:
+    FileOperation();
+    ~FileOperation();
 
-//     void writeVechicalData(std::list<Vechical*> vechical);
-//     std::list<Vechical*> readVechicalData();
+    void writeBikeData(const std::vector<Bike*>& bikes);
+    std::vector<Bike*> readBikeData();
 
-//     void writecustamerData(std::list<CustamerDetails*> custamerDetails);
-//     std::list<CustamerDetails*> readcustamerData();
-// };
+    void writeCarData(const std::vector<Car*>& cars);
+    std::vector<Car*> readCarData();
 
-// #endif // FILEOPERATION_H
+    void writeCustamerData(const std::list<CustamerDetails*>& custamerDetails);
+    std::list<CustamerDetails*> readCustamerData();
+};
+
+#endif // FILEOPERATION_H

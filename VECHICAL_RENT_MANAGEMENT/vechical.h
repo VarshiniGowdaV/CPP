@@ -18,6 +18,16 @@ public:
     Vechical();
     ~Vechical();
 
+    int getVechicalNumber();
+    string getVechicalName();
+    string getModal();
+    string getType();
+    int getCast();
+    int getPayment();
+    int getDuration();
+    string getStatus();
+
+    void setDetails(int vechical_number, string vechical_name, string modal, string type, int cast, int payment, int duration, string status);
     void display();
 };
 

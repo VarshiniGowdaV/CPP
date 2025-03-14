@@ -14,7 +14,7 @@ public:
     ~Car();
     Car();
 
-    int getVechicalNum();
+    //int getVechicalNum();
     void inputCarDetails();
     void DisplayCarDetails()const;
 

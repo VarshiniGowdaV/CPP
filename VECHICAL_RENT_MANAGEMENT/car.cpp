@@ -26,10 +26,10 @@ Car::~Car()
 {
     cout << "Car Destructor called" << endl;
 }
-int Car::getVechicalNum()
-{
-    return m_vechical_number;
-}
+// int Car::getVechicalNum()
+// {
+//     return m_vechical_number;
+// }
 void Car::bookCar()
 {
     if (!isBooked)

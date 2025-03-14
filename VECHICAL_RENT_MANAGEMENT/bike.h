@@ -11,17 +11,6 @@ public:
     ~Bike();
     Bike();
 
-    int getVechicalNumber();
-    string getVechicalName();
-    string getModal();
-    string getType();
-    int getCast();
-    int getPayment();
-    int getDuration();
-    string getStatus();
-
-    void setDetails(string Modal,string type,int cast,int payment,int duration,string status);
-
     void inputBikeDetails();
     void DisplayBikeDetails()const;
 

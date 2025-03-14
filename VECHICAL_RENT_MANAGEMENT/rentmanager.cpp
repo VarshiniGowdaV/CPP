@@ -53,7 +53,7 @@ void RentManager::BookCar()
 
     for (auto &c : cars)
     {
-        if (c.getVechicalNum() == carID && !c.isbookedCar())
+        if (c.getVechicalNumber() == carID && !c.isbookedCar())
         {
             c.bookCar();
             cout << "Car booked successfully!" << endl;
@@ -89,7 +89,7 @@ void RentManager::ReturnCar(int vehicle_num)
 {
     for (auto& car : cars)
     {
-        if (car.getVechicalNum() == vehicle_num)
+        if (car.getVechicalNumber() == vehicle_num)
         {
             if (car.isbookedCar())
             {

@@ -22,47 +22,6 @@ Bike::~Bike()
 {
     cout<<"Bike destructor called"<<endl;
 }
-int Bike::getVechicalNumber()
-{
-    return m_vechical_number;
-}
-string Bike::getVechicalName()
-{
-    return m_vechical_name;
-}
-string Bike::getModal()
-{
-    return m_modal;
-}
-string Bike::getType()
-{
-    return m_type;
-}
-int Bike::getCast()
-{
-    return m_cast;
-}
-int Bike::getPayment()
-{
-    return m_payment;
-}
-int Bike::getDuration()
-{
-    return m_duration;
-}
-string Bike::getStatus()
-{
-    return m_status;
-}
-void Bike::setDetails(string Modal, string type, int cast, int payment, int duration, string status)
-{
-    m_modal=Modal;
-    m_type=type;
-    m_cast=cast;
-    m_payment=payment;
-    m_duration=duration;
-    m_status=status;
-}
 void Bike::bookBike()
 {
     if (!isbooked)
