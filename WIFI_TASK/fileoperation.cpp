@@ -2,6 +2,12 @@
 #include "fileoperation.h"
 #include<fstream>
 
-Fileoperation::Fileoperation() {}
+Fileoperation::Fileoperation()
+{
+    cout<<"Fileoperation constructor called"<<endl;
+}
 
-Fileoperation::~Fileoperation(){}
+Fileoperation::~Fileoperation()
+{
+    cout<<"Fileoperation destructor called"<<endl;
+}

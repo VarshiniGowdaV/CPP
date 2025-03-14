@@ -2,7 +2,7 @@
 #include "wifimanager.h"
 #include "wifi.h"
 #include <fstream>
-
+#include "fileoperation.h"
 Wifimanager::Wifimanager()
 {
     cout<<"wifi manager constructor called"<<endl;

@@ -6,7 +6,11 @@ using namespace std;
 #include "fileoperation.h"
 #include "wifimanager.h"
 
-enum choice {display=1,sorting,connection};
+enum choice {
+    display=1,
+    sorting,
+    connection
+};
 
 int main()
 {

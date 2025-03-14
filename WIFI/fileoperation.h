@@ -12,6 +12,7 @@ class Fileoperation
 public:
     Fileoperation();
     ~Fileoperation();
+
 };
 
 #endif

@@ -8,7 +8,7 @@ Wifi::Wifi()
 
 Wifi::~Wifi()
 {
-    cout<<"wifi destructor called"<<endl;
+    //cout<<"wifi destructor called"<<endl;
 }
 
 Wifi::Wifi(string wifiname, int signalstrength, string status, int password)
