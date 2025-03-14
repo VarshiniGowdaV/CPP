@@ -3,12 +3,12 @@
 #include "bike.h"
 #include "car.h"
 #include "custamerdetails.h"
-#include <list>
+#include <vector>
 using namespace std;
 class RentManager
 {
-    list<Bike> bike;
-    list<Car> car;
+    std::vector<Bike> bikes;
+    std::vector<Car> cars;
     list<CustamerDetails> custamerdetails;
 public:
     RentManager();
@@ -18,8 +18,8 @@ public:
     void addBike();
     void BookCar();
     void BookBike();
-    void ReturnBike();
-    void ReturnCar();
+    void ReturnBike(int vechical_number);
+    void ReturnCar(int vehicle_num);
     void DisplayRent();
 };
 

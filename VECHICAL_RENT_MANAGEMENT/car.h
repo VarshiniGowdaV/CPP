@@ -2,23 +2,27 @@
 #define CAR_H
 #include "vechical.h"
 #include <iostream>
+#include "bike.h"
 using namespace std;
 class Car:public Vechical
 {
+private:
+    bool booked;
+    bool isBooked=false;
 public:
-    Car();
+    Car(int vechical_number, string vechical_name, string modal, string type, int cast, int payment, int duration, string status);
     ~Car();
+    Car();
 
-    int getCarNumber();
-    string getCarName();
-    string getCarModal();
-    string getCarType();
-    int getCarCast();
-    int getCarPayment();
-    int getCarDuration();
-    string getCarStatus();
+    int getVechicalNum();
+    void inputCarDetails();
+    void DisplayCarDetails()const;
 
-    void setCarDetails(string Modal,string type,int cast,int payment,int duraction,string status);
+    void bookCar();
+    void returnCar();
+
+    bool isbookedCar()const;
+    void setBookedCar(bool status);
 };
 
 #endif // CAR_H

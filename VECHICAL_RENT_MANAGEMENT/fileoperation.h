@@ -12,11 +12,8 @@
 //     FileOperation();
 //     ~FileOperation();
 
-//     void writeBikeData(std::list<Bike*> bikes);
-//     std::list<Bike*> readBikeData();
-
-//     void writeCarData(std::list<Car*> cars);
-//     std::list<Car*> readCarData();
+//     void writeVechicalData(std::list<Vechical*> vechical);
+//     std::list<Vechical*> readVechicalData();
 
 //     void writecustamerData(std::list<CustamerDetails*> custamerDetails);
 //     std::list<CustamerDetails*> readcustamerData();

@@ -1,52 +1,99 @@
 #include "car.h"
 #include <iostream>
+#include "vechical.h"
+#include "bike.h"
 using namespace std;
+
 Car::Car()
 {
-    cout<<"Car constructor called"<<endl;
+    cout << "Car constructor called" << endl;
+    booked = false;
 }
+
+Car::Car(int vechical_number, string vechical_name, string modal, string type, int cast, int payment, int duration, string status) {
+    m_vechical_number = vechical_number;
+    m_vechical_name = vechical_name;
+    m_modal = modal;
+    m_type = type;
+    m_cast = cast;
+    m_payment = payment;
+    m_duration = duration;
+    m_status = status;
+    booked = false;
+}
+
 Car::~Car()
 {
-    cout<<"Car Destructor called"<<endl;
+    cout << "Car Destructor called" << endl;
 }
-int Car::getCarNumber()
+int Car::getVechicalNum()
 {
     return m_vechical_number;
 }
-string Car::getCarName()
+void Car::bookCar()
 {
-    return m_vechical_name;
+    if (!isBooked)
+    {
+        isBooked = true;
+        cout << "Car has been successfully booked." << endl;
+    }
+    else
+    {
+        cout << "Car is already booked!" << endl;
+    }
 }
-string Car::getCarModal()
+
+
+void Car::returnCar()
 {
-    return m_modal;
+    if(isBooked)
+    {
+        isBooked = false;
+        cout<<"Car has been successfully returned."<<endl;
+    }
+    else
+    {
+        cout<<"Car is already available!"<<endl;
+    }
 }
-string Car::getCarType()
+
+bool Car::isbookedCar() const
 {
-    return m_type;
+    return isBooked;
 }
-int Car::getCarCast()
+void Car::setBookedCar(bool status)
 {
-    return m_cast;
+    isBooked =status;
 }
-int Car::getCarPayment()
+void Car::inputCarDetails()
 {
-    return m_payment;
+    cout << "Enter Car Number: ";
+    cin >> m_vechical_number;
+    cout << "Enter Car Name: ";
+    cin >> m_vechical_name;
+    cout << "Enter Car Model: ";
+    cin >> m_modal;
+    cout << "Enter Car Type: ";
+    cin >> m_type;
+    cout << "Enter Car Cost: ";
+    cin >> m_cast;
+    cout << "Enter Car Payment: ";
+    cin >> m_payment;
+    cout << "Enter Car Duration: ";
+    cin >> m_duration;
+    cout << "Enter Car Status: ";
+    cin >> m_status;
+    booked = false;
 }
-int Car::getCarDuration()
+
+void Car::DisplayCarDetails() const
 {
-    return m_duration;
-}
-string Car::getCarStatus()
-{
-    return m_status;
-}
-void Car::setCarDetails(string Modal, string type, int cast, int payment, int duraction, string status)
-{
-    m_modal=Modal;
-    m_type=type;
-    m_cast=cast;
-    m_payment=payment;
-    m_duration=duraction;
-    m_status=status;
+    cout << "Car Number: " << m_vechical_number << endl;
+    cout << "Car Name: " << m_vechical_name << endl;
+    cout << "Car Model: " << m_modal << endl;
+    cout << "Car Type: " << m_type << endl;
+    cout << "Car Cost: " << m_cast << endl;
+    cout << "Car Payment: " << m_payment << endl;
+    cout << "Car Duration: " << m_duration << endl;
+    cout << "Car Status: " << (booked ? "Booked" : "Available") << endl;
 }

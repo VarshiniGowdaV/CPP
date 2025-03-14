@@ -20,6 +20,7 @@ Vechical::~Vechical()
 {
     cout<<"Vechical destructor called"<<endl;
 }
+
 void Vechical::display() {
     cout << "Vehicle Number: " << m_vechical_number << endl;
     cout << "Vehicle Name: " << m_vechical_name<< endl;
