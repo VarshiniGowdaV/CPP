@@ -1,6 +1,7 @@
 #ifndef VECHICAL_H
 #define VECHICAL_H
 #include <iostream>
+#include "custamerdetails.h"
 using namespace std;
 class Vechical
 {
@@ -28,7 +29,7 @@ public:
     string getStatus();
 
     void setDetails(int vechical_number, string vechical_name, string modal, string type, int cast, int payment, int duration, string status);
-    void display();
+    virtual void displayDetails() const=0;
 };
 
 #endif // VECHICAL_H

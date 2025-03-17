@@ -79,7 +79,7 @@ void Bike::inputBikeDetails()
     cin>>m_status;
     booked = false;
 }
-void Bike::DisplayBikeDetails()const
+void Bike::displayDetails()const
 {
     cout<<" Bike Number: "<<m_vechical_number<<endl;
     cout<<" Bike Name: "<<m_vechical_name<<endl;

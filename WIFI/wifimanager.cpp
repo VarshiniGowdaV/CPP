@@ -1,4 +1,3 @@
-
 #include "wifimanager.h"
 #include "wifi.h"
 #include <fstream>

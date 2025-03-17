@@ -2,6 +2,7 @@
 #include <iostream>
 #include "vechical.h"
 #include "bike.h"
+#include "custamerdetails.h"
 using namespace std;
 
 Car::Car()
@@ -26,10 +27,6 @@ Car::~Car()
 {
     cout << "Car Destructor called" << endl;
 }
-// int Car::getVechicalNum()
-// {
-//     return m_vechical_number;
-// }
 void Car::bookCar()
 {
     if (!isBooked)
@@ -86,7 +83,7 @@ void Car::inputCarDetails()
     booked = false;
 }
 
-void Car::DisplayCarDetails() const
+void Car::displayDetails() const
 {
     cout << "Car Number: " << m_vechical_number << endl;
     cout << "Car Name: " << m_vechical_name << endl;
@@ -96,4 +93,8 @@ void Car::DisplayCarDetails() const
     cout << "Car Payment: " << m_payment << endl;
     cout << "Car Duration: " << m_duration << endl;
     cout << "Car Status: " << (booked ? "Booked" : "Available") << endl;
+}
+void Car::customerDisplay()
+{
+    custamer.customerDisplay();
 }

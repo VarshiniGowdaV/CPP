@@ -6,7 +6,7 @@ CONFIG -= qt
 SOURCES += \
         bike.cpp \
         car.cpp \
-        custamerdetails.cpp \
+        customerdetails.cpp \
         filehandling.cpp \
         main.cpp \
         rentmanager.cpp \
@@ -15,7 +15,7 @@ SOURCES += \
 HEADERS += \
     bike.h \
     car.h \
-    custamerdetails.h \
+    customerdetails.h \
     filehandling.h \
     rentmanager.h \
     vechical.h

@@ -1,6 +1,7 @@
 #include "rentmanager.h"
 #include <iostream>
 #include "vechical.h"
+#include "custamerdetails.h"
 #include "bike.h"
 #include "car.h"
 using namespace std;
@@ -16,14 +17,16 @@ void RentManager::addCar()
 {
     Car newCar;
     newCar.inputCarDetails();
-    cars.push_back(newCar);
+    carlist.push_back(newCar);
+    file.writeCarData(carlist);
     cout<<"Car added Successfully!"<<endl;
 }
 void RentManager::addBike()
 {
     Bike newBike;
     newBike.inputBikeDetails();
-    bikes.push_back(newBike);
+    bikelist.push_back(newBike);
+    file.writeBikeData(bikelist);
     cout<<"Bike added Successfully!"<<endl;
 }
 void RentManager::BookBike()
@@ -32,16 +35,38 @@ void RentManager::BookBike()
     cout << "Enter Bike ID to book: ";
     cin >> bikeID;
 
-    for (auto &b : bikes)
+    for (auto &bike : bikelist)
     {
-        if (b.getVechicalNumber() == bikeID && !b.isBookedBike())
+        if (bike.getVechicalNumber() == bikeID && !bike.isBookedBike())
         {
-            b.bookBike();
+            bike.bookBike();
             cout << "Bike booked successfully!" << endl;
+
+            string name, idProof, phnum;
+            int age;
+
+            cout << "Enter Customer Name: ";
+            cin.ignore();
+            getline(cin, name);
+
+            cout << "Enter ID Proof: ";
+            getline(cin, idProof);
+
+            cout << "Enter Age: ";
+            cin >> age;
+
+            cout << "Enter Phone Number: ";
+            cin >> phnum;
+
+            CustomerDetails customer;
+            customer.setCustomerDetails(name, idProof, age, phnum);
+
+          custamerdetails.push_back(customer);
+            cout << "Customer details saved successfully!" << endl;
             return;
         }
     }
-    cout << "Bike not available !" << endl;
+    cout << "Bike not available!" << endl;
 }
 
 
@@ -51,11 +76,13 @@ void RentManager::BookCar()
     cout << "Enter Car ID to book: ";
     cin >> carID;
 
-    for (auto &c : cars)
+    for (auto &car : carlist)
     {
-        if (c.getVechicalNumber() == carID && !c.isbookedCar())
+        if (car.getVechicalNumber() == carID && !car.isbookedCar())
         {
-            c.bookCar();
+            car.displayDetails();
+            car.customerDisplay();
+            car.bookCar();
             cout << "Car booked successfully!" << endl;
             return;
         }
@@ -67,7 +94,7 @@ void RentManager::BookCar()
 
 void RentManager::ReturnBike(int vechical_number)
 {
-    for (Bike &bike : bikes)
+    for (Bike &bike : bikelist)
     {
         if (bike.getVechicalNumber() == vechical_number)
         {
@@ -87,7 +114,7 @@ void RentManager::ReturnBike(int vechical_number)
 }
 void RentManager::ReturnCar(int vehicle_num)
 {
-    for (auto& car : cars)
+    for (auto& car : carlist)
     {
         if (car.getVechicalNumber() == vehicle_num)
         {
@@ -108,13 +135,13 @@ void RentManager::ReturnCar(int vehicle_num)
 void RentManager::DisplayRent()
 {
     cout<<"List of Cars: "<<endl;
-    for(const auto &c : cars)
+    for(const auto &car : carlist)
     {
-        c.DisplayCarDetails();
+        car.displayDetails();
     }
     cout<<"List of Bikes: "<<endl;
-    for(const auto &b : bikes)
+    for(const auto &bike : bikelist)
     {
-        b.DisplayBikeDetails();
+        bike.displayDetails();
     }
 }

@@ -63,13 +63,13 @@ void Vechical::setDetails(int vechical_number, string vechical_name, string moda
     m_duration=duration;
     m_status=status;
 }
-void Vechical::display() {
-    cout << "Vehicle Number: " << m_vechical_number << endl;
-    cout << "Vehicle Name: " << m_vechical_name<< endl;
-    cout << "Model: " << m_modal << endl;
-    cout << "Type: " << m_type << endl;
-    cout << "Cost: " << m_cast << endl;
-    cout << "Payment: " << m_payment << endl;
-    cout << "Duration: " << m_duration << " days" << endl;
-    cout << "Status: " << m_status << endl;
-}
+// void Vechical::display() {
+//     cout << "Vehicle Number: " << m_vechical_number << endl;
+//     cout << "Vehicle Name: " << m_vechical_name<< endl;
+//     cout << "Model: " << m_modal << endl;
+//     cout << "Type: " << m_type << endl;
+//     cout << "Cost: " << m_cast << endl;
+//     cout << "Payment: " << m_payment << endl;
+//     cout << "Duration: " << m_duration << " days" << endl;
+//     cout << "Status: " << m_status << endl;
+// }

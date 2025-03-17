@@ -1,32 +1,39 @@
-#ifndef CUSTAMERDETAILS_H
-#define CUSTAMERDETAILS_H
+#ifndef CUSTOMERDETAILS_H
+#define CUSTOMERDETAILS_H
+
 #include <iostream>
-#include "vechical.h"
-#include <list>
-#include "bike.h"
+#include <string>
+
 using namespace std;
-class CustamerDetails
-{
+
+class Vehicle;
+
+class CustomerDetails {
 private:
-    string m_custamer_name;
+    string m_customer_name;
     string m_idproof;
     int m_age;
     string m_phnum;
+    Vehicle* vehiclelist;
+    //std::vector<Vehicle*> vehiclelist;
+
 public:
-    CustamerDetails(string custamer_name,string idproof,int age,string phnum);
-    CustamerDetails();
-    ~CustamerDetails();
+    CustomerDetails();
+    CustomerDetails( string customer_name,  string idproof, int age,  string phnum);
+    ~CustomerDetails();
 
-    string getCustamerName();
-    string getIdProof();
-    int getAge();
-    string getphnum();
+    // Getters
+    string getCustomerName() const;
+    string getIdProof() const;
+    int getAge() const;
+    string getPhoneNumber() const;
 
-    void setcustamerdetails(string custamername,string idproof,int age,string phnum );
 
-    Vechical * vechicalDetails;
-    list<Bike*> bikes;
-    void display();
+    void setCustomerDetails(const string& customer_name, const string& idproof, int age, const string& phnum);
+
+    void customerDisplay() const;
+
+    //void setVehicleDetails(Vehicle* vehicle);
 };
 
-#endif // CUSTAMERDETAILS_H
+#endif // CUSTOMERDETAILS_H

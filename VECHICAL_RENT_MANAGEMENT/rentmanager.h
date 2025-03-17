@@ -4,12 +4,15 @@
 #include "car.h"
 #include "custamerdetails.h"
 #include <vector>
+#include "filehandling.h"
 using namespace std;
 class RentManager
 {
-    std::vector<Bike> bikes;
-    std::vector<Car> cars;
-    list<CustamerDetails> custamerdetails;
+private:
+    std::vector<Bike> bikelist;
+    std::vector<Car> carlist;
+    vector<CustomerDetails> custamerdetails;
+    FileHandling file;
 public:
     RentManager();
     ~RentManager();
