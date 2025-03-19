@@ -14,11 +14,7 @@ CustomerDetails::CustomerDetails(string customer_name, string idproof, int age, 
    vehiclelist=nullptr;
 }
 
-CustomerDetails::~CustomerDetails()
-{
-    cout << "Customer Details destructor called" << endl;
-     delete vehiclelist;
-}
+
 
 string CustomerDetails::getCustomerName() const
 {
@@ -54,17 +50,6 @@ void CustomerDetails::customerDisplay() const
         cout << "Age: " << m_age << endl;
         cout << "Phone Number: " << m_phnum << endl;
 
-        // for (const auto& vehicle : vehiclelist) {
-        //     if (vehicle)
-        //     {
-        //         vehicle->displayDetails();
-        //     }
-        // }
 }
 
-
-// void CustomerDetails::setVehicleDetails(Vehicle* vehicle)
-// {
-//     this->vehicleDetails = vehicle;
-// }
 

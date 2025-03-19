@@ -19,6 +19,9 @@ void RentManager::addCar()
     newCar.inputCarDetails();
     carlist.push_back(newCar);
     file.writeCarData(carlist);
+    file.writeCustamerDetails(custamerdetails);
+    file.readCarData();
+    //file.readCustamerData();
     cout<<"Car added Successfully!"<<endl;
 }
 void RentManager::addBike()
@@ -27,6 +30,7 @@ void RentManager::addBike()
     newBike.inputBikeDetails();
     bikelist.push_back(newBike);
     file.writeBikeData(bikelist);
+    file.writeCustamerDetails(custamerdetails);
     cout<<"Bike added Successfully!"<<endl;
 }
 void RentManager::BookBike()
@@ -80,57 +84,89 @@ void RentManager::BookCar()
     {
         if (car.getVechicalNumber() == carID && !car.isbookedCar())
         {
-            car.displayDetails();
-            car.customerDisplay();
-            car.bookCar();
-            cout << "Car booked successfully!" << endl;
-            return;
+           car.bookCar();
+            cout<<"Car booked successfully!"<<endl;
+
+           string name,idproof,phnum;
+            int age ;
+
+           cout<<"Enter customer name: ";
+            cin.ignore();
+           getline(cin,name);
+
+           cout<<"Enter ID proof: ";
+           getline(cin,idproof);
+
+           cout<<"Enter Age: ";
+           cin>>age;
+
+           cout<<"Enter phone number: ";
+           cin>>phnum;
+
+           CustomerDetails customer;
+           customer.setCustomerDetails(name,idproof,age,phnum);
+
+           custamerdetails.push_back(customer);
+           cout<<"Customer details saved successfully!"<<endl;
+           return;
+
         }
     }
     cout << "Car not available!" << endl;
 }
 
-
-
-void RentManager::ReturnBike(int vechical_number)
+void RentManager::ReturnBike(int vehicle_number)
 {
     for (Bike &bike : bikelist)
     {
-        if (bike.getVechicalNumber() == vechical_number)
+        if (bike.getVechicalNumber() == vehicle_number)
         {
             if (bike.isBookedBike())
             {
+                CustomerDetails customer = bike.getCustomerDetails();
+                std::cout << "Bike returned by: " << customer.getCustomerName()
+                          << ", Contact: " << customer.getPhoneNumber() << std::endl;
+
                 bike.returnBike();
-                cout << "Bike with Vehicle Number " << vechical_number << " has been returned successfully." << endl;
+
+                std::cout << "Bike with Vehicle Number " << vehicle_number
+                          << " has been returned successfully." << std::endl;
             }
             else
             {
-                cout << "Bike with Vehicle Number " << vechical_number << " is already available." << endl;
+                std::cout << "Bike with Vehicle Number " << vehicle_number
+                          << " is already available." << std::endl;
             }
             return;
         }
     }
-    cout << "Bike with Vehicle Number " << vechical_number << " not found in the system." << endl;
+    std::cout << "Bike with Vehicle Number " << vehicle_number << " not found in the system." << std::endl;
 }
-void RentManager::ReturnCar(int vehicle_num)
+
+
+
+void RentManager::ReturnCar(int vehicle_number)
 {
     for (auto& car : carlist)
     {
-        if (car.getVechicalNumber() == vehicle_num)
+        if (car.getVechicalNumber() == vehicle_number)
         {
             if (car.isbookedCar())
             {
+                CustomerDetails customer = car.getCustomerDetails();
+                std::cout<<"Bike returned by: "<<customer.getCustomerName()
+                          <<",phone number: "<<customer.getPhoneNumber()<<std::endl;
                 car.returnCar();
-                cout << "Car with vehicle number " << vehicle_num << " has been returned successfully." << endl;
+                cout << "Car with vehicle number " << vehicle_number << " has been returned successfully." << endl;
             }
             else
             {
-                cout << "Car with vehicle number " << vehicle_num << " is already available." << endl;
+                cout << "Car with vehicle number " << vehicle_number << " is already available." << endl;
             }
             return;
         }
     }
-    cout << "Car with vehicle number " << vehicle_num << " not found in the system." << endl;
+    cout << "Car with vehicle number " << vehicle_number<< " not found in the system." << endl;
 }
 void RentManager::DisplayRent()
 {

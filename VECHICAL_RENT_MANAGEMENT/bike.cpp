@@ -81,12 +81,16 @@ void Bike::inputBikeDetails()
 }
 void Bike::displayDetails()const
 {
-    cout<<" Bike Number: "<<m_vechical_number<<endl;
-    cout<<" Bike Name: "<<m_vechical_name<<endl;
-    cout<<" Bike model: "<<m_modal<<endl;
-    cout<<" Bike Type: "<<m_type<<endl;
-    cout<<" Bike Cost: "<<m_cast<<endl;
-    cout<<" Bike payment: "<<m_payment<<endl;
-    cout<<" Bike Duration: "<<m_duration<<endl;
-    cout<<" Bike Status: "<<(booked ? "Booked" : "Available") << endl;
+    cout<<" Bike Number: "<<m_vechical_number<<"|";
+    cout<<" Bike Name: "<<m_vechical_name<<"|";
+    cout<<" Bike model: "<<m_modal<<"|";
+    cout<<" Bike Type: "<<m_type<<"|";
+    cout<<" Bike Cost: "<<m_cast<<"|";
+    cout<<" Bike payment: "<<m_payment<<"|";
+    cout<<" Bike Duration: "<<m_duration<<"|";
+    cout<<" Bike Status: "<<(booked ? "Booked" : "Available") << "|";
+}
+CustomerDetails Bike::getCustomerDetails() const
+{
+    return custamer;
 }

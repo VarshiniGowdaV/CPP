@@ -15,25 +15,24 @@ private:
     int m_age;
     string m_phnum;
     Vehicle* vehiclelist;
-    //std::vector<Vehicle*> vehiclelist;
+
 
 public:
     CustomerDetails();
     CustomerDetails( string customer_name,  string idproof, int age,  string phnum);
     ~CustomerDetails();
 
-    // Getters
+
     string getCustomerName() const;
     string getIdProof() const;
     int getAge() const;
     string getPhoneNumber() const;
 
 
-    void setCustomerDetails(const string& customer_name, const string& idproof, int age, const string& phnum);
+    void  setCustomerDetails(const string& customer_name, const string& idproof, int age, const string& phnum);
 
     void customerDisplay() const;
 
-    //void setVehicleDetails(Vehicle* vehicle);
 };
 
 #endif // CUSTOMERDETAILS_H

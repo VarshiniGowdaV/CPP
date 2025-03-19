@@ -14,6 +14,8 @@ protected:
     int m_payment;
     int m_duration;
     string m_status;
+    CustomerDetails custamer;
+
 public:
     Vechical(int vechical_number,string vechical_name,string modal,string type,int cast,int payment,int duration ,string status);
     Vechical();
@@ -30,6 +32,7 @@ public:
 
     void setDetails(int vechical_number, string vechical_name, string modal, string type, int cast, int payment, int duration, string status);
     virtual void displayDetails() const=0;
+    virtual CustomerDetails getCustomerDetails() const = 0;
 };
 
 #endif // VECHICAL_H

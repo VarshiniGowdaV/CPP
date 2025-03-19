@@ -79,7 +79,7 @@ void FileHandling::writeCarData(std::vector<Car> carList)
     cout<<"Car data written successfully."<<endl;
 }
 
-vector<Car*> FileHandling::readCarData()
+vector<Car *> FileHandling::readCarData()
 {
     vector<Car*>carList;
     ifstream file("car.csv");
@@ -105,4 +105,41 @@ vector<Car*> FileHandling::readCarData()
 
     file.close();
     return carList;
+}
+void FileHandling:: writeCustomerDetails(std::vector<CustomerDetails*> customerList)
+{
+    ofstream file("customers.csv", ios::app);
+    if (!file)
+    {
+        cout << "Error opening customer file for writing!" << endl;
+        return;
+    }
+    for (const auto &customer : customerList)
+    {
+        file << customer.getCustomerName() << ","
+             << customer.getIdProof() << ","
+             << customer.getAge() << ","
+             << customer.getPhoneNumber() << "\n";
+    }
+    file.close();
+    cout << "Customer data written successfully." << endl;
+}
+};
+vector<CustomerDetails*> readCustamerData()
+{
+    vector<CustomerDetails*>customerList;
+    ifstream file("customer.csv");
+    if (!file)
+    {
+        cout<<"Error opening bike file for reading!"<<endl;
+        return customerList;
+    }
+    string customername,idproof,phnum;
+    int age;
+    while(getline(file,customername,',')&& getline(file,idproof,',')&& file>>age && file.ignore() && getline(file,phnum,','))
+    {
+        customerList.push_back(new CustomerDetails(customername,idproof,age,phnum));
+    }
+    file.close();
+    return customerList;
 }

@@ -6,7 +6,7 @@ class Bike:public Vechical
 private:
     bool booked;
     bool isbooked=false;
-    CustomerDetails custamer;
+
 
 public:
     Bike(int vechical_number, string vechical_name, string modal, string type, int cast, int payment, int duration, string status);
@@ -21,7 +21,7 @@ public:
 
     bool isBookedBike() const;
     void setBookedBike(bool status);
-
+    CustomerDetails getCustomerDetails() const override;
 };
 
 #endif // BIKE_H

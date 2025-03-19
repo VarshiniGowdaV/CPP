@@ -1,10 +1,14 @@
 #ifndef BIKE_H
 #define BIKE_H
-
-class Bike
+#include "vechical.h"
+#include "customerdetails.h"
+class Bike:public Vechical
 {
 public:
+    Bike(string vechicalnumber,string vechicalname,string model,float rentprice,string duration,string status);
+    ~Bike();
     Bike();
+    void setstatus(string status);
 };
 
 #endif // BIKE_H

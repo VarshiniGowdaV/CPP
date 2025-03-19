@@ -21,6 +21,8 @@ public:
     void addBike();
     void BookCar();
     void BookBike();
+    void DeleteBike();
+    void DeleteCar();
     void ReturnBike(int vechical_number);
     void ReturnCar(int vehicle_num);
     void DisplayRent();

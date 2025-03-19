@@ -1,9 +1,10 @@
 #include <iostream>
-
+#include "rentmanager.h"
 using namespace std;
 
 int main()
 {
-    cout << "Hello World!" << endl;
+    Rentmanager manager;
+    manager.alldetails();
     return 0;
 }

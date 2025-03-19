@@ -98,3 +98,7 @@ void Car::customerDisplay()
 {
     custamer.customerDisplay();
 }
+CustomerDetails Car::getCustomerDetails() const
+{
+    return custamer;
+}
