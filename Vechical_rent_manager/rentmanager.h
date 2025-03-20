@@ -7,6 +7,7 @@
 #include "car.h"
 #include "bike.h"
 #include "filehandling.h"
+#include <unordered_map>
 class Rentmanager
 {
 private:
@@ -30,6 +31,8 @@ public:
     void updateCarPrice();
     void deleteBike();
     void deleteCar();
+    void searchBike(int id, unordered_map<int, string>& bikes);
+    void searchCar(int id,unordered_map<int,string>& cars);
     void alldetails();
 };
 
