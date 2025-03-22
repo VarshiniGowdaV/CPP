@@ -31,8 +31,10 @@ public:
     void updateCarPrice();
     void deleteBike();
     void deleteCar();
-    void searchBike(int id, unordered_map<int, string>& bikes);
-    void searchCar(int id,unordered_map<int,string>& cars);
+    void searchBike(const string& vechicalNumber);
+    void searchCar(const string& vechicalNumber);
+    void sortbike();
+    void sortcar();
     void alldetails();
 };
 

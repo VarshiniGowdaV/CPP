@@ -266,37 +266,87 @@ void Rentmanager::deleteCar()
     }
     cout<<"Car with number "<<vehicleNumber <<"is not deleted"<<endl;
 }
-void Rentmanager::searchBike(int id, unordered_map<int, string>& bikes)
+void Rentmanager::searchBike(const std::string& vehicleNumber)
 {
     bikelist=file.readBikeData();
-    if (bikes.find(id) != bikes.end())
+    for (const auto& bike : bikelist)
     {
-        cout << "Bike Found! ID: " << id << ", Model: " << bikes[id] << endl;
-    } else
+        if (bike.getvechicalnumber() == vehicleNumber)
+        {
+            std::cout << "Bike Found:\n";
+            std::cout << "Name: " << bike.getvechicalname() << std::endl;
+            std::cout << "Model: " << bike.getmodel() << std::endl;
+            std::cout << "Rent Price: " << bike.getrentprice() << std::endl;
+            std::cout << "Duration: " << bike.getduration() << " days" << std::endl;
+            return;
+        }
+    }
+    std::cout << "Bike with Number " << vehicleNumber << " not found" << std::endl;
+}
+void Rentmanager::searchCar(const std::string& vehicleNumber)
+{
+    carlist = file.readCarData();
+    for (const auto& car : carlist) {
+        if (car.getvechicalnumber() == vehicleNumber) {
+            std::cout << "Car Found:\n";
+            std::cout << "Model: " << car.getmodel() << std::endl;
+            std::cout << "Rent Price: " << car.getrentprice() << std::endl;
+            return;
+        }
+    }
+    std::cout << "Car with ID " << vehicleNumber << " not found!" << std::endl;
+}
+void Rentmanager::sortbike()
+{
+    bikelist=file.readBikeData();
+    cout << "Sorting bikes" << endl;
+    for (auto i = bikelist.begin(); i != bikelist.end(); ++i)
     {
-        cout << "Bike with ID " << id << " not found!" << endl;
+        for (auto j = i; j != bikelist.end(); ++j)
+        {
+            if (j->getstatus() == "available" && i->getstatus() == "booked")
+            {
+                iter_swap(i, j);
+            }
+            else if (i->getstatus() == j->getstatus() && j->getrentprice() > i->getrentprice())
+            {
+                iter_swap(i, j);
+            }
+            else if (i->getstatus() == j->getstatus() && j->getrentprice() == i->getrentprice() && j->getvechicalname() > i->getvechicalname())
+            {
+                iter_swap(i, j);
+            }
+        }
     }
 }
-void Rentmanager::searchCar(int id, unordered_map<int, string> &cars)
+
+void Rentmanager::sortcar()
 {
     carlist=file.readCarData();
-    if(cars.find(id)!=cars.end())
+    cout << "Sorting cars" << endl;
+    for (auto i = carlist.begin(); i != carlist.end(); ++i)
     {
-        cout<<"Car Found! ID: "<<id<<",Model: "<<cars[id]<<endl;
-    }
-    else
-    {
-        cout<<"Car with ID "<<id<<"not found!"<<endl;
+        for (auto j = i; j != carlist.end(); ++j)
+        {
+            if (j->getstatus() == "available" && i->getstatus() == "booked")
+            {
+                iter_swap(i, j);
+            }
+            else if (i->getstatus() == j->getstatus() && j->getrentprice() > i->getrentprice())
+            {
+                iter_swap(i, j);
+            }
+            else if (i->getstatus() == j->getstatus() && j->getrentprice() == i->getrentprice() && j->getvechicalname() > i->getvechicalname())
+            {
+                iter_swap(i, j);
+            }
+        }
     }
 }
+
 void Rentmanager::alldetails()
 {
     int choice;
-
-    // vector<Bike> bikelist ;
-    // vector<Car> carlist;
-    unordered_map<int,string>bikes;
-    unordered_map<int ,string>cars;
     while (true)
     {
         cout << "\nVehicle Rental Application" << endl;
@@ -307,7 +357,8 @@ void Rentmanager::alldetails()
         cout << " 5. Return Vehicle" << endl;
         cout << " 6. Delete Vehicle" << endl;
         cout << " 7. Search Vehicle" << endl;
-        cout << " 8. Exit" << endl;
+        cout << " 8. Sort Vehicle " <<endl;
+        cout << " 9. Exit" << endl;
         cout << " Enter your choice: ";
         cin >> choice;
 
@@ -411,29 +462,53 @@ void Rentmanager::alldetails()
         break;
         case 7:
         {
-            int searchchoice;
-            cout << "\n Search Vehicle " << endl;
-            cout << "1. Search a Bike" << endl;
-            cout << "2. Search a Car" << endl;
-            cout << "Enter your choice: ";
-            cin >> searchchoice;
+            int searchChoice;
+            std::cout << "\nSearch Vehicle " << std::endl;
+            std::cout << "1. Search a Bike" << std::endl;
+            std::cout << "2. Search a Car" << std::endl;
+            std::cout << "Enter your choice: ";
+            std::cin >> searchChoice;
 
-            if (searchchoice == 1) {
-                int bikeId;
-                cout << "Enter Bike ID: ";
-                cin >> bikeId;
-                searchBike(bikeId, bikes);
-            } else if (searchchoice == 2) {
-                int carId;
-                cout << "Enter Car ID: ";
-                cin >> carId;
-                searchCar(carId, cars);
-            } else {
-                cout << "Invalid Choice!" << endl;
+            std::string vehicleNumber;
+
+            if (searchChoice == 1) {
+                std::cout << "Enter Bike Number: ";
+                std::cin >> vehicleNumber;
+                searchBike(vehicleNumber);
+            }
+            else if (searchChoice == 2) {
+                std::cout << "Enter Car Number: ";
+                std::cin >> vehicleNumber;
+                searchCar(vehicleNumber);
+            }
+            else {
+                std::cout << "Invalid Choice!" << std::endl;
             }
         }
         break;
         case 8:
+        {
+            int sortChoice;
+            std::cout << "\nSort Vehicle" << std::endl;
+            std::cout << "1. Sort Bikes" << std::endl;
+            std::cout << "2. Sort Cars" << std::endl;
+            std::cout << "Enter your choice: ";
+            std::cin >> sortChoice;
+
+            switch (sortChoice) {
+            case 1:
+                sortbike();
+                break;
+            case 2:
+                sortcar();
+                break;
+            default:
+                std::cout << "Invalid choice! Please enter 1 or 2." << std::endl;
+            }
+            break;
+        }
+
+        case 9:
             cout << "Exiting Application..." << endl;
             return;
         default:
