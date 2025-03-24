@@ -1,58 +1,81 @@
-#include "rentmanager.h"
+#include "vehiclemanager.h"
 #include <iostream>
-#include <unordered_map>
 using namespace std;
-Rentmanager::Rentmanager()
+VehicleManager::VehicleManager()
 {
-    cout<<"Rentmanager construtor called"<<endl;
+    cout<<"Vehicle manager constructor called"<<endl;
 }
-
-Rentmanager::~Rentmanager()
+VehicleManager::~VehicleManager()
 {
-    cout<<"Rentmanager destructor called"<<endl;
+    cout<<"Vehicle manager destructor called"<<endl;
 }
-
-void Rentmanager::addCar()
+void VehicleManager::addBike()
 {
-    string number, name, model,duration, status;
-    float price;
-    cout << "Enter Car Number: ";
+    string number,brand,model,status;
+    float rentPrice;
+    cout<<"Enter bike number: ";
     cin>>number;
-    cout<<"Enter car name: ";
-    cin>>name;
-    cout<<"Enter Model: ";
+    cout<<"Enter bike brand: ";
+    cin>>brand;
+    cout<<"Enter bike model: ";
     cin>>model;
-    cout<<"Enter the price: ";
-    cin>>price;
-    cout<<"Enter the duration: ";
-    cin>>duration;
-    cout<<"Enter the status: ";
+    cout<<"Enter bike price: ";
+    cin>>rentPrice;
+    cout<<"Enter bike status: ";
     cin>>status;
-    carlist.push_back(Car(number, name, model, price, duration, status));
-    file.writeCarData(carlist);
-}
-
-void Rentmanager::addBike()
-{
-    string number, name, model,duration, status;
-    float price;
-    cout << "Enter Bike Number: ";
-    cin>>number;
-    cout<<"Enter Bike name: ";
-    cin>>name;
-    cout<<"Enter Model: ";
-    cin>>model;
-    cout<<"Enter  price: ";
-    cin>>price;
-    cout<<"Enter duration: ";
-    cin>>duration;
-    cout<<"Enter the status: ";
-    cin>>status;
-    bikelist.push_back(Bike(number, name, model, price, duration, status));
+    bikelist.push_back(RentalBike(number,brand,model,rentPrice,status));
     file.writeBikeData(bikelist);
 }
+void VehicleManager::addCar()
+{
+    string number,brand,model,status;
+    float rentPrice;
+    cout<<"Enter car number: ";
+    cin>>number;
+    cout<<"Enter car brand: ";
+    cin>>brand;
+    cout<<"Enter car model: ";
+    cin>>model;
+    cout<<"Enter car price: ";
+    cin>>rentPrice;
+    cout<<"Enter car status: ";
+    cin>>status;
+    carlist.push_back(RentalCar(number,brand,model,rentPrice,status));
+    file.writeCarData(carlist);
+}
+void  VehicleManager::BookBike()
+{
+    bikelist = file.readBikeData();
+    string number;
+    cout<<"Enter Bike number to Book: ";
+    cin>>number;
 
-void Rentmanager::BookCar()
+    for(auto i=bikelist.begin();i!=bikelist.end();i++)
+    {
+        if(i->getvehicalNumber()==number && i->getstatus() == "Available")
+        {
+        string name,idproof,phnum;
+        int age;
+        cout<<"Enter customer name: ";
+        cin>>name;
+        cout<<"Enter customer idProof: ";
+        cin>>idproof;
+        cout<<"Enter customer age: ";
+        cin>>age;
+        cout<<"Enter customer phnum: ";
+        cin>>phnum;
+        Customer customerlist(name,idproof,age,phnum);
+        i->setrentstatus("Booked");
+        file.writeBikeData(bikelist);
+        //customerlist.push_back(Customer(name,idproof,age,phnum));
+        //file.writeCustomerdatabike(customerlist);
+        cout<<"Bike booked successfully bike no:  "<<number <<endl;
+        return;
+    }
+        cout<<"Bike not available or incorrect number!"<<endl;
+    }
+}
+void VehicleManager::BookCar()
 {
     carlist = file.readCarData();
     string number;
@@ -61,7 +84,7 @@ void Rentmanager::BookCar()
 
     for (auto i = carlist.begin(); i != carlist.end(); i++)
     {
-        if (i->getvechicalnumber() == number && i->getstatus() == "Available")
+        if (i->getvehicalNumber() == number && i->getstatus() == "Available")
         {
             string name, idProof, phone;
             int age;
@@ -75,9 +98,9 @@ void Rentmanager::BookCar()
             cout << "Enter Phone Number: ";
             cin >> phone;
 
-            CustomerDetails customerList(name, idProof, age, phone);
+            Customer customerList(name, idProof, age, phone);
 
-            i->setDetails(i->getvechicalnumber(), i->getvechicalname(), i->getmodel(), i->getrentprice(), i->getduration(), "Booked");
+            i->getvehicalNumber(), i->getbrand(),i->getmodel(), i->getrentprice(), i->getstatus(), "Booked";
 
             cout << "Car Booked Successfully for " << name << endl;
             return;
@@ -86,41 +109,7 @@ void Rentmanager::BookCar()
     cout << "Car not available or incorrect number!" << endl;
 }
 
-void Rentmanager::BookBike()
-{
-    bikelist = file.readBikeData();
-    string number;
-    cout << "Enter Bike Number to Book: ";
-    cin >> number;
-
-    for (auto i = bikelist.begin(); i != bikelist.end(); i++)
-    {
-        if (i->getvechicalnumber() == number && i->getstatus() == "Available")
-        {
-            string name, idProof, phone;
-            int age;
-
-            cout << "Enter Customer Name: ";
-            cin >> name;
-            cout << "Enter ID Proof: ";
-            cin >> idProof;
-            cout << "Enter Age: ";
-            cin >> age;
-            cout << "Enter Phone Number: ";
-            cin >> phone;
-
-            CustomerDetails customerList(name, idProof, age, phone);
-
-            i->setDetails(i->getvechicalnumber(), i->getvechicalname(), i->getmodel(), i->getrentprice(), i->getduration(), "Booked");
-
-            cout << "Bike Booked Successfully for " << name << endl;
-            return;
-        }
-    }
-    cout << "Bike not available or incorrect number!" << endl;
-}
-
-void Rentmanager::ReturnCar()
+void VehicleManager::ReturnCar()
 {
     carlist = file.readCarData();
     cout << "Car return function called" << endl;
@@ -133,9 +122,9 @@ void Rentmanager::ReturnCar()
 
     for (auto i = carlist.begin(); i != carlist.end(); i++)
     {
-        if (i->getvechicalnumber() == vehicleNumber && i->getstatus() == "booked")
+        if (i->getvehicalNumber() == vehicleNumber && i->getstatus() == "booked")
         {
-            i->setstatus("available");
+            i->setrentstatus("available");
             file.writeCarData(carlist);
             cout << "Car returned successfully from the customer" << endl;
             return;
@@ -145,7 +134,7 @@ void Rentmanager::ReturnCar()
 }
 
 
-void Rentmanager::ReturnBike()
+void VehicleManager::ReturnBike()
 {
     bikelist = file.readBikeData();
     cout<<"Bike return function called"<<endl;
@@ -155,9 +144,9 @@ void Rentmanager::ReturnBike()
     cin>>vechicalNumber;
     for(auto i=bikelist.begin();i!=bikelist.end();i++)
     {
-        if(i->getvechicalnumber() == vechicalNumber && i->getstatus() == "booked")
+        if(i->getvehicalNumber() == vechicalNumber && i->getstatus() == "booked")
         {
-            i->setstatus("available");
+            i->setrentstatus("available");
             file.writeBikeData(bikelist);
             cout<<"Bike returned successfully from the customer"<<endl;
             return;
@@ -166,32 +155,33 @@ void Rentmanager::ReturnBike()
     cout<<"car with number "<<vechicalNumber<<"is not booked"<<endl;
 }
 
-void Rentmanager::displayBike()
+void VehicleManager::displayBike()
 {
     bikelist=file.readBikeData();
-    for (const auto &bike : bikelist) {
-        cout << "Bike: " << bike.getvechicalnumber() << " "
-             << bike.getvechicalname() << " "
+    for ( auto &bike : bikelist)
+    {
+        cout << "Bike: " << bike.getvehicalNumber() << " "
+             << bike.getbrand() <<" "
              << bike.getmodel() << " "
              << bike.getrentprice() << " "
              << bike.getstatus() << endl;
     }
 }
 
-void Rentmanager::displayCar()
+void VehicleManager::displayCar()
 {
     carlist=file.readCarData();
-    for(const auto &car:carlist)
+    for( auto &car:carlist)
     {
-        cout<<"Car: "<<car.getvechicalnumber() <<" "
-             <<car.getvechicalname() <<" "
+        cout<<"Car: "<<car.getvehicalNumber() <<" "
+             <<car.getbrand() <<" "
              <<car.getmodel() <<" "
              <<car.getrentprice() <<" "
              <<car.getstatus() <<endl;
     }
 }
 
-void Rentmanager::updateBikePrice()
+void VehicleManager::updateBikePrice()
 {
     bikelist=file.readBikeData();
     string number;
@@ -199,8 +189,9 @@ void Rentmanager::updateBikePrice()
     cout << "Enter Bike Number and New Rent Price: ";
     cin >> number >> newPrice;
     for (auto &bike : bikelist) {
-        if (bike.getvechicalnumber() == number) {
-            bike.setDetails(bike.getvechicalnumber(), bike.getvechicalname(), bike.getmodel(), newPrice, bike.getduration(), bike.getstatus());
+        if (bike.getvehicalNumber() == number)
+        {
+        bike.getvehicalNumber(), bike.getbrand(), bike.getmodel(), newPrice,  bike.getstatus();
             //file.writeBikeData(bikelist);
             cout << "Bike Rent Price Updated!\n";
             return;
@@ -208,7 +199,7 @@ void Rentmanager::updateBikePrice()
     }
     cout << "Bike not found!\n";
 }
-void Rentmanager::updateCarPrice()
+void VehicleManager::updateCarPrice()
 {
     carlist=file.readCarData();
     string number;
@@ -216,15 +207,16 @@ void Rentmanager::updateCarPrice()
     cout << "Enter Car Number and New Rent Price: ";
     cin >> number >> newPrice;
     for (auto &car : carlist) {
-        if (car.getvechicalnumber() == number) {
-            car.setDetails(car.getvechicalnumber(), car.getvechicalname(), car.getmodel(), newPrice, car.getduration(), car.getstatus());
+        if (car.getvehicalNumber() == number) {
+            car.getvehicalNumber(), car.getbrand(), car.getmodel(), newPrice,  car.getstatus();
+            //file.writeBikeData(bikelist);
             cout << "Car Rent Price Updated!\n";
             return;
         }
     }
     cout << "Car not found!\n";
 }
-void Rentmanager::deleteBike()
+void VehicleManager::deleteBike()
 {
     bikelist = file.readBikeData();
     cout << "Bike Delete function called" << endl;
@@ -235,7 +227,7 @@ void Rentmanager::deleteBike()
 
     for (auto i = bikelist.begin(); i != bikelist.end(); ++i)
     {
-        if (i->getvechicalnumber() == vehicleNumber && i->getstatus() != "booked")
+        if (i->getvehicalNumber() == vehicleNumber && i->getstatus() != "booked")
         {
             bikelist.erase(i);
             file.writeBikeData(bikelist);
@@ -247,7 +239,7 @@ void Rentmanager::deleteBike()
     cout << "Bike with number " << vehicleNumber << " could not be deleted (either not found or is booked)." << endl;
 }
 
-void Rentmanager::deleteCar()
+void VehicleManager::deleteCar()
 {
     carlist =file.readCarData();
     cout<<"Car delete function called"<<endl;
@@ -256,7 +248,7 @@ void Rentmanager::deleteCar()
     cin>>vehicleNumber;
     for(auto i=carlist.begin();i!=carlist.end();i++)
     {
-        if(i->getvechicalnumber() == vehicleNumber && i->getstatus() == "booked")
+        if(i->getvehicalNumber() == vehicleNumber && i->getstatus() == "booked")
         {
             carlist.erase(i);
             file.writeCarData(carlist);
@@ -266,28 +258,30 @@ void Rentmanager::deleteCar()
     }
     cout<<"Car with number "<<vehicleNumber <<"is not deleted"<<endl;
 }
-void Rentmanager::searchBike(const std::string& vehicleNumber)
+void VehicleManager::searchBike()
 {
     bikelist=file.readBikeData();
-    for (const auto& bike : bikelist)
+    string vehicalNumber;
+    for ( auto& bike : bikelist)
     {
-        if (bike.getvechicalnumber() == vehicleNumber)
+        if (bike.getvehicalNumber() ==  vehicalNumber)
         {
             std::cout << "Bike Found:\n";
-            std::cout << "Name: " << bike.getvechicalname() << std::endl;
+            std::cout << "Brand: " << bike.getbrand() << std::endl;
             std::cout << "Model: " << bike.getmodel() << std::endl;
             std::cout << "Rent Price: " << bike.getrentprice() << std::endl;
-            std::cout << "Duration: " << bike.getduration() << " days" << std::endl;
+            std::cout << "status: " << bike.getstatus() << " days" << std::endl;
             return;
         }
     }
-    std::cout << "Bike with Number " << vehicleNumber << " not found" << std::endl;
+    std::cout << "Bike with Number " << vehicalNumber << " not found" << std::endl;
 }
-void Rentmanager::searchCar(const std::string& vehicleNumber)
+void VehicleManager::searchCar()
 {
     carlist = file.readCarData();
-    for (const auto& car : carlist) {
-        if (car.getvechicalnumber() == vehicleNumber) {
+    string vehicleNumber;
+    for ( auto& car : carlist) {
+        if (car.getvehicalNumber() == vehicleNumber) {
             std::cout << "Car Found:\n";
             std::cout << "Model: " << car.getmodel() << std::endl;
             std::cout << "Rent Price: " << car.getrentprice() << std::endl;
@@ -296,7 +290,7 @@ void Rentmanager::searchCar(const std::string& vehicleNumber)
     }
     std::cout << "Car with ID " << vehicleNumber << " not found!" << std::endl;
 }
-void Rentmanager::sortbike()
+void VehicleManager::sortbikeStatus()
 {
     bikelist=file.readBikeData();
     cout << "Sorting bikes" << endl;
@@ -312,7 +306,7 @@ void Rentmanager::sortbike()
             {
                 iter_swap(i, j);
             }
-            else if (i->getstatus() == j->getstatus() && j->getrentprice() == i->getrentprice() && j->getvechicalname() > i->getvechicalname())
+            else if (i->getstatus() == j->getstatus() && j->getrentprice() == i->getrentprice() )
             {
                 iter_swap(i, j);
             }
@@ -320,7 +314,7 @@ void Rentmanager::sortbike()
     }
 }
 
-void Rentmanager::sortcar()
+void VehicleManager::sortcarbyStatus()
 {
     carlist=file.readCarData();
     cout << "Sorting cars" << endl;
@@ -336,15 +330,48 @@ void Rentmanager::sortcar()
             {
                 iter_swap(i, j);
             }
-            else if (i->getstatus() == j->getstatus() && j->getrentprice() == i->getrentprice() && j->getvechicalname() > i->getvechicalname())
+            else if (i->getstatus() == j->getstatus() && j->getrentprice() == i->getrentprice() )
             {
                 iter_swap(i, j);
             }
         }
     }
 }
-
-void Rentmanager::alldetails()
+void VehicleManager::sortbikebyPrice()
+{
+    bikelist=file.readBikeData();
+    cout<<"Bike price sorted function called"<<endl;
+    for(auto &i:bikelist)
+    {
+        for(auto &j:bikelist)
+        {
+            if(i.getrentprice() <j.getrentprice())
+            {
+                iter_swap(&i,&j);
+            }
+        }
+    }
+    file.writeBikeData(bikelist);
+    displayBike();
+}
+void VehicleManager::sortcarbyPrice()
+{
+    carlist=file.readCarData();
+    cout<<"Car price sorted function called"<<endl;
+    for(auto &i :carlist)
+    {
+        for(auto &j:carlist)
+        {
+            if(i.getrentprice() <j .getrentprice())
+            {
+                iter_swap(&i,&j);
+            }
+        }
+    }
+    file.writeCarData(carlist);
+    displayCar();
+}
+void VehicleManager::alldetails()
 {
     int choice;
     while (true)
@@ -474,12 +501,12 @@ void Rentmanager::alldetails()
             if (searchChoice == 1) {
                 std::cout << "Enter Bike Number: ";
                 std::cin >> vehicleNumber;
-                searchBike(vehicleNumber);
+                searchBike();
             }
             else if (searchChoice == 2) {
                 std::cout << "Enter Car Number: ";
                 std::cin >> vehicleNumber;
-                searchCar(vehicleNumber);
+                searchCar();
             }
             else {
                 std::cout << "Invalid Choice!" << std::endl;
@@ -487,28 +514,42 @@ void Rentmanager::alldetails()
         }
         break;
         case 8:
-        {
-            int sortChoice;
-            std::cout << "\nSort Vehicle" << std::endl;
-            std::cout << "1. Sort Bikes" << std::endl;
-            std::cout << "2. Sort Cars" << std::endl;
-            std::cout << "Enter your choice: ";
-            std::cin >> sortChoice;
-
-            switch (sortChoice) {
+            cout<<"1.Bike"<<endl;
+            cout<<"2.Car"<<endl;
+            cout<<"enter choice"<<endl;
+            cin>>choice;
+            switch(choice)
+            {
             case 1:
-                sortbike();
+                 sortbikeStatus();
                 break;
             case 2:
-                sortcar();
+                sortcarbyStatus();
                 break;
             default:
-                std::cout << "Invalid choice! Please enter 1 or 2." << std::endl;
+                cout<<"Invalid choice"<<endl;
+                break;
             }
             break;
-        }
-
         case 9:
+            cout<<"1.Bike"<<endl;
+            cout<<"2.Car"<<endl;
+            cout<<"enter choice"<<endl;
+            cin>>choice;
+            switch(choice)
+            {
+            case 1:
+                sortbikebyPrice();
+                break;
+            case 2:
+                sortcarbyPrice();
+                break;
+            default:
+                cout<<"Invalid choice"<<endl;
+                break;
+            }
+            break;
+        case 10:
             cout << "Exiting Application..." << endl;
             return;
         default:

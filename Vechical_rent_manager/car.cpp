@@ -10,7 +10,7 @@ Car::Car(string vechicalnumber, string vechicalname, string model, float rentpri
     m_vechical_name=vechicalname;
     m_model=model;
     m_rentPrice=rentprice;
-    m_duration=duration;
+    //m_duration=duration;
     m_status=status;
 }
 Car::~Car()

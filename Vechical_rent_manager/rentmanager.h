@@ -25,8 +25,8 @@ public:
     void BookBike();
     void ReturnBike();
     void ReturnCar();
-    void displayOfBike();
-    void displayofCar();
+    void displayBike();
+    void displayCar();
     void updateBikePrice();
     void updateCarPrice();
     void deleteBike();
