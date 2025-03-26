@@ -236,7 +236,7 @@ void VehicleManager::deleteBike()
         }
     }
 
-    cout << "Bike with number " << vehicleNumber << " could not be deleted (either not found or is booked)." << endl;
+    cout << "Bike with number " << vehicleNumber << " deleted found  is booked)." << endl;
 }
 
 void VehicleManager::deleteCar()
