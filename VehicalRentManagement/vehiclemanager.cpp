@@ -1,5 +1,7 @@
 #include "vehiclemanager.h"
 #include <iostream>
+#include "onlinepayment.h"
+#include "cashpayment.h"
 using namespace std;
 VehicleManager::VehicleManager()
 {
@@ -373,19 +375,22 @@ void VehicleManager::sortcarbyPrice()
 }
 void VehicleManager::alldetails()
 {
+
+    loginManagement.loginManagement();
     int choice;
     while (true)
     {
         cout << "\nVehicle Rental Application" << endl;
-        cout << "\n 1. Add Vehicles" << endl;
+        cout << " 1. Add Vehicles" << endl;
         cout << " 2. Display Vehicles" << endl;
         cout << " 3. Update Vehicle Rent Price" << endl;
         cout << " 4. Rent Vehicle" << endl;
-        cout << " 5. Return Vehicle" << endl;
-        cout << " 6. Delete Vehicle" << endl;
-        cout << " 7. Search Vehicle" << endl;
-        cout << " 8. Sort Vehicle " <<endl;
-        cout << " 9. Exit" << endl;
+        cout << " 5. Payment for Vehicle" << endl;
+        cout << " 6. Return Vehicle" << endl;
+        cout << " 7. Delete Vehicle" << endl;
+        cout << " 8. Search Vehicle" << endl;
+        cout << " 9. Sort Vehicle " <<endl;
+        cout << " 10. Exit" << endl;
         cout << " Enter your choice: ";
         cin >> choice;
 
@@ -457,6 +462,41 @@ void VehicleManager::alldetails()
         break;
         case 5:
         {
+            int paymentChoice;
+            cout << "\n Payment Method " <<endl;
+            cout << " 1. Online Payment " <<endl;
+            cout << " 2. Cash Payment " <<endl;
+            cout << " Enter your choice: ";
+            cin >> paymentChoice;
+            if(paymentChoice == 1)
+            {
+                string upi_id,transaction_id;
+                double amount;
+                cout<<"Enter UPI ID: ";
+                cin>>upi_id;
+                cout<<"Enter Transaction_id: ";
+                cin>>transaction_id;
+                cout<<"Enter Payment Amount: ";
+                cin>>amount;
+                OnlinePayment online(upi_id,transaction_id);
+                online.processPayment(amount);
+                online.displayPaymentDetails();
+            }
+            else if(paymentChoice == 2)
+            {
+                double amount;
+                cout<<"Enter Payment Amount: ";
+                cin>>amount;
+                CashPayment cash(amount);
+                cash.displayPayment();
+            }
+            else
+            {
+                cout<<"Invalid choice!"<<endl;
+            }
+        }
+        case 6:
+        {
             int returnChoice;
             cout << "\n Return Vehicle " << endl;
             cout << " 1. Return a Bike " << endl;
@@ -471,7 +511,7 @@ void VehicleManager::alldetails()
                 cout << "Invalid choice!" << endl;
         }
         break;
-        case 6:
+        case 7:
         {
             int deleteChoice;
             cout << "\n Delete Vehicle " << endl;
@@ -487,7 +527,7 @@ void VehicleManager::alldetails()
                 cout << "Invalid choice!" << endl;
         }
         break;
-        case 7:
+        case 8:
         {
             int searchChoice;
             std::cout << "\nSearch Vehicle " << std::endl;
@@ -513,7 +553,7 @@ void VehicleManager::alldetails()
             }
         }
         break;
-        case 8:
+        case 9:
             cout<<"1.Bike"<<endl;
             cout<<"2.Car"<<endl;
             cout<<"enter choice"<<endl;
@@ -531,7 +571,7 @@ void VehicleManager::alldetails()
                 break;
             }
             break;
-        case 9:
+        case 10:
             cout<<"1.Bike"<<endl;
             cout<<"2.Car"<<endl;
             cout<<"enter choice"<<endl;
@@ -549,7 +589,8 @@ void VehicleManager::alldetails()
                 break;
             }
             break;
-        case 10:
+
+        case 11:
             cout << "Exiting Application..." << endl;
             return;
         default:

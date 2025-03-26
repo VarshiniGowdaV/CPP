@@ -5,14 +5,20 @@
 #include "rentalvehicledetails.h"
 #include "customer.h"
 #include "fileoperation.h"
+#include "admin.h"
+#include "user.h"
 #include <list>
+#include "loginmanagement.h"
 class VehicleManager
 {
 private:
     std::list<RentalBike> bikelist;
     std::list<RentalCar> carlist;
     list<Customer> customerlist;
+    // list<Admin> adminlist;
+    // list<User> userlist;
     Fileoperation file;
+    LoginManagement *loginManagement;
 public:
     VehicleManager();
     ~VehicleManager();

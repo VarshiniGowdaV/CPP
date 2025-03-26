@@ -4,6 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        admin.cpp \
         cashpayment.cpp \
         customer.cpp \
         fileoperation.cpp \
@@ -14,10 +15,10 @@ SOURCES += \
         rentalcar.cpp \
         rentalvehicledetails.cpp \
         user.cpp \
-        userfileoperation.cpp \
         vehiclemanager.cpp
 
 HEADERS += \
+    admin.h \
     cashpayment.h \
     customer.h \
     fileoperation.h \
@@ -27,5 +28,4 @@ HEADERS += \
     rentalcar.h \
     rentalvehicledetails.h \
     user.h \
-    userfileoperation.h \
     vehiclemanager.h
