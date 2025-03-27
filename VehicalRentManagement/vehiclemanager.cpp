@@ -364,7 +364,7 @@ void VehicleManager::sortcarbyPrice()
     {
         for(auto &j:carlist)
         {
-            if(i.getrentprice() <j .getrentprice())
+            if(i.getrentprice() <j.getrentprice())
             {
                 iter_swap(&i,&j);
             }
@@ -415,7 +415,7 @@ void VehicleManager::alldetails()
                 addCar();
                 break;
             case 3:
-                cout << "Exit Add" << endl;
+                cout << "Exit " << endl;
                 break;
             default:
                 cout << "Invalid Choice" << endl;
@@ -588,7 +588,7 @@ void VehicleManager::alldetails()
                 cout<<"Invalid choice"<<endl;
                 break;
             }
-            break;
+            break;/i
 
         case 11:
             cout << "Exiting Application..." << endl;
