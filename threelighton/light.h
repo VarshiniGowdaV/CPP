@@ -9,11 +9,13 @@ class Light
 private:
     string m_brand;
     string m_colour;
-    Wire *wire;
+    //Wire *wire;
 public:
     Light(string brand,string colour);
     Light();
     ~Light();
+     Light(const Light& light1);
+    void  operator =(Light light);
 
     void lightOn();
 };

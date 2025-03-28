@@ -25,11 +25,11 @@ public:
     void writeCustomerdatacar(std::list<Customer>customerlist);
     std::list<Customer> readcustomerdatacar();
 
-    void writeAdminData(list<Admin> adminlist);
-    list<Admin> readAdminData();
+    // void writeAdminData(list<Admin> adminlist);
+    // list<Admin> readAdminData();
 
-    void wirteUserData(list<User> userlist);
-    list<User> readUserData();
+    // void wirteUserData(list<User> userlist);
+    // list<User> readUserData();
 };
 
 #endif // FILEOPERATION_H

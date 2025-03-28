@@ -376,7 +376,7 @@ void VehicleManager::sortcarbyPrice()
 void VehicleManager::alldetails()
 {
 
-    loginManagement.loginManagement();
+    //loginManagement.loginManagement();
     int choice;
     while (true)
     {
@@ -588,7 +588,7 @@ void VehicleManager::alldetails()
                 cout<<"Invalid choice"<<endl;
                 break;
             }
-            break;/i
+            break;
 
         case 11:
             cout << "Exiting Application..." << endl;

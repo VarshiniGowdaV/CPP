@@ -18,7 +18,7 @@ private:
     // list<Admin> adminlist;
     // list<User> userlist;
     Fileoperation file;
-    LoginManagement loginManagement;
+    //LoginManagement loginManagement;
 public:
     VehicleManager();
     ~VehicleManager();

@@ -9,14 +9,13 @@ class Switch
 private:
     string m_name;
     string m_brand;
-    Wire *m_wire1;
-    Wire *m_wire2;
-    Wire *m_wire3;
-
+    Wire *m_wire;
 public:
-    Switch(string name,string brand, Wire *wire1,Wire *wire2,Wire *wire3);
+    Switch(string name, string brand, Wire *wire);
     Switch();
     ~Switch();
+    Switch(const Switch& switch1);
+    void operator =(Switch switchobj);
 
     void switchOn();
 };

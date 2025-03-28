@@ -119,45 +119,45 @@ list<Customer> Fileoperation::readcustomerdatabike()
     }
     file.close();
 }
-void Fileoperation::writeAdminData(list<Admin> adminlist)
-{
-    ofstream file("AdminData.csv",ios::app);
-    for(auto i=adminlist.begin();i!=adminlist.end();i++)
-    {
-        file<<i->getusername()<<","<<i->getpassword()<<"\n";
-    }
-    file.close();
-}
-list<Admin> Fileoperation::readAdminData()
-{
-    list<Admin*> adminlist;
-    ifstream file("AdminData.csv");
-    string username,password;
-    while(getline(file,username,',')&& getline(file,password,','))
-    {
-        adminlist.push_back(new Admin(username,password));
-    }
-    file.close();
-}
-void Fileoperation::wirteUserData(list<User> userlist)
-{
-    ofstream file("UserData.csv",ios::app);
-    for(auto i=userlist.begin();i!=userlist.end();i++)
-    {
-        file<<i->getusername()<<","<<i->getpassword()<<","
-             <<i->getphonenumber()<<","<<i->getemailid()<<"\n";
-    }
-    file.close();
-}
-list<User> Fileoperation::readUserData()
-{
-    list<User*> userlist;
-    ifstream file("UserData.csv");
-    string username,password,phonenumber,emailid;
-    while(getline(file,username,',')&& getline(file,password,',')
-           && getline(file,phonenumber,',')&& getline(file,emailid,','))
-    {
-        userlist.push_back(new User(username,password,phonenumber,emailid));
-    }
-    file.close();
-}
+// void Fileoperation::writeAdminData(list<Admin> adminlist)
+// {
+//     ofstream file("AdminData.csv",ios::app);
+//     for(auto i=adminlist.begin();i!=adminlist.end();i++)
+//     {
+//         file<<i->getusername()<<","<<i->getpassword()<<"\n";
+//     }
+//     file.close();
+// }
+// list<Admin> Fileoperation::readAdminData()
+// {
+//     list<Admin*> adminlist;
+//     ifstream file("AdminData.csv");
+//     string username,password;
+//     while(getline(file,username,',')&& getline(file,password,','))
+//     {
+//         adminlist.push_back(new Admin(username,password));
+//     }
+//     file.close();
+// }
+// void Fileoperation::wirteUserData(list<User> userlist)
+// {
+//     ofstream file("UserData.csv",ios::app);
+//     for(auto i=userlist.begin();i!=userlist.end();i++)
+//     {
+//         file<<i->getusername()<<","<<i->getpassword()<<","
+//              <<i->getphonenumber()<<","<<i->getemailid()<<"\n";
+//     }
+//     file.close();
+// }
+// list<User> Fileoperation::readUserData()
+// {
+//     list<User*> userlist;
+//     ifstream file("UserData.csv");
+//     string username,password,phonenumber,emailid;
+//     while(getline(file,username,',')&& getline(file,password,',')
+//            && getline(file,phonenumber,',')&& getline(file,emailid,','))
+//     {
+//         userlist.push_back(new User(username,password,phonenumber,emailid));
+//     }
+//     file.close();
+// }

@@ -6,12 +6,12 @@ using namespace std;
 
 int main()
 {
-    Light light1;
-    Light light2;
-    Light light3;
-    Wire wire1(10,20,&light1);
-    Wire wire2(10,20,&light2);
-    Wire wire3(10,20,&light3);
-    Switch switch1("hifi","brand1",&wire1,&wire2,&wire3);
+    Switch switch1("switch","Havells",nullptr);
     switch1.switchOn();
+    Wire wire(10,2);
+    wire.addlight(Light("Philips","white"));
+    wire.addlight(Light("Havells","yellow"));
+    switch1 = Switch("Switch","Havells",&wire);
+    switch1.switchOn();
+    return 0;
 }
