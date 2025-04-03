@@ -4,8 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += \
+        light.cpp \
         main.cpp \
-        vehical.cpp
+        switch.cpp \
+        wire.cpp
 
 HEADERS += \
-    vehical.h
+    light.h \
+    switch.h \
+    wire.h
