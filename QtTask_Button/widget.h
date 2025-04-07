@@ -3,13 +3,12 @@
 
 #include <QWidget>
 
-class QPaintEvent : public QWidget
+class Widget : public QWidget
 {
     Q_OBJECT
 
 public:
-    QPaintEvent();
-    ~QPaintEvent();
-    bool paintEvent();
+    Widget(QWidget *parent = nullptr);
+    ~Widget();
 };
 #endif // WIDGET_H
