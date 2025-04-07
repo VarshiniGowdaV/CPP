@@ -1,46 +1,58 @@
 #include "onlinepayment.h"
+#include <iostream>
+#include <string>
 
-OnlinePayment::OnlinePayment(string upi_id,string transaction_id)
+using namespace std;
+OnlinePayment::OnlinePayment(std::string upi_id,std::string transaction_id)
 {
-    m_upi_id=upi_id;
-    m_transaction_id=transaction_id;
+    m_upi_id = upi_id;
+    m_transaction_id = transaction_id;
 }
+
 OnlinePayment::OnlinePayment()
 {
-    cout<<"OnlinePayment constructor called"<<endl;
+    cout << "OnlinePayment constructor called" << endl;
 }
+
 OnlinePayment::~OnlinePayment()
 {
-    cout<<"OnlinePayment destructor called"<<endl;
+    cout << "OnlinePayment destructor called" << endl;
 }
-string OnlinePayment::getupiid()
+
+string OnlinePayment::getUpiId() const
 {
     return m_upi_id;
 }
-string OnlinePayment::gettransactionid()
+
+string OnlinePayment::getTransactionId() const
 {
     return m_transaction_id;
 }
-void OnlinePayment::setupiid(string upi_id)
+
+void OnlinePayment::setUpiId(const string& upi_id)
 {
-    m_upi_id=upi_id;
+    m_upi_id = upi_id;
 }
-void OnlinePayment::settransactionid(string transaction_id)
+
+void OnlinePayment::setTransactionId(const string& transaction_id)
 {
-    m_transaction_id=transaction_id;
+    m_transaction_id = transaction_id;
 }
+
 void OnlinePayment::processPayment(double amount)
 {
-    if(m_upi_id.empty())
+    if (m_upi_id.empty())
     {
-        cout<<"Error:payment cannot be processed."<<endl;
+        cout << "Error: payment cannot be processed." << endl;
         return;
     }
-    cout<<"Processing payment of Rs. "<<amount<<"using UPI ID: "<<m_upi_id<<endl;
-    cout<<"Transaction Successful. Transaction ID: "<<m_transaction_id<<endl;
+    cout << "Processing online payment of ₹" << amount
+         << " via UPI ID: " << m_upi_id << endl;
+    cout << "Transaction ID: " << m_transaction_id << " has been recorded." << endl;
 }
-void OnlinePayment::displayPaymentDetails()
+
+void OnlinePayment::displayPaymentDetails() const
 {
-    cout<<"UPI ID: "<<m_upi_id<<endl;
-    cout<<"Transaction ID: "<<m_transaction_id<<endl;
+    cout << "UPI ID: " << m_upi_id << endl;
+    cout << "Transaction ID: " << m_transaction_id << endl;
 }

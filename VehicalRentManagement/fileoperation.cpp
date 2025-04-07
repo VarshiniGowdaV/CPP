@@ -81,44 +81,58 @@ void Fileoperation:: writeCustomerdatabike(std::list<Customer> customerlist)
     }
     file.close();
 }
-list<Customer> Fileoperation::readcustomerdatacar()
-{
-    list<Customer*> customerlist;
-    ifstream file("customerdatabike.csv");
-    string customer_name,idproof,phnum;
-    int age;
-    while(getline(file,customer_name,',')&&
-           getline(file,idproof,',')&&
-           file>>age && file.ignore() &&
-           getline(file,phnum,','))
-    {
-        customerlist.push_back(new Customer(customer_name,idproof,age,phnum));
-    }
-}
-void Fileoperation:: writeCustomerdatacar(std::list<Customer> customerlist)
-{
-    ofstream file("customerdatacar.csv",ios::app);
-    for(auto i=customerlist.begin();i!=customerlist.end();i++)
-    {
-        file<<i->getCustomerName()<<","<<i->getidProof()<<","<<i->getAge()<<","<<i->getPhnum()<<"\n";
-    }
-    file.close();
-}
 list<Customer> Fileoperation::readcustomerdatabike()
 {
-    list<Customer*> customerlist;
+    list<Customer> customerlist;
     ifstream file("customerdatacar.csv");
-    string customer_name,idproof,phnum;
+    string customer_name, idproof, phnum;
     int age;
-    while(getline(file,customer_name,',')&&
-           getline(file,idproof,',')&&
-           file>>age && file.ignore() &&
-           getline(file,phnum,','))
+
+    while (getline(file, customer_name, ',') &&
+           getline(file, idproof, ',') &&
+           file >> age &&
+           file.ignore() &&
+           getline(file, phnum))
     {
-        customerlist.push_back(new Customer(customer_name,idproof,age,phnum));
+        Customer cust(customer_name, idproof, age, phnum, nullptr);
+        customerlist.push_back(cust);
+    }
+
+    file.close();
+    return customerlist;
+}
+list<Customer> Fileoperation::readcustomerdatacar()
+{
+    list<Customer> customerlist;
+    ifstream file("customerdatacar.csv");
+    string customer_name, idproof, phnum;
+    int age;
+
+    while (getline(file, customer_name, ',') &&
+           getline(file, idproof, ',') &&
+           file >> age &&
+           file.ignore() &&
+           getline(file, phnum))
+    {
+        Customer cust(customer_name, idproof, age, phnum, nullptr);
+        customerlist.push_back(cust);
+    }
+
+    file.close();
+    return customerlist;
+}
+
+void Fileoperation::writeCustomerdatacar(list<Customer> customerlist)
+{
+    ofstream file("customerdatacar.csv", ios::app);
+    for(auto i=customerlist.begin();i!=customerlist.end();i++)
+    {
+         file<<i->getCustomerName()<<","<<i->getidProof()<<","<<i->getAge()<<","<<i->getPhnum()<<"\n";
     }
     file.close();
 }
+
+
 // void Fileoperation::writeAdminData(list<Admin> adminlist)
 // {
 //     ofstream file("AdminData.csv",ios::app);

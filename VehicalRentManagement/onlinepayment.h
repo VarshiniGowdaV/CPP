@@ -1,26 +1,28 @@
 #ifndef ONLINEPAYMENT_H
 #define ONLINEPAYMENT_H
+
+#include "Payment.h"
 #include <iostream>
-using namespace std;
-class OnlinePayment
-{
+#include <string>
+
+class OnlinePayment : public Payment {
 private:
-    string m_upi_id;
-    string m_transaction_id;
+    std::string m_upi_id;
+    std::string m_transaction_id;
+
 public:
-    OnlinePayment(string upi_id,string transaction_id);
+    OnlinePayment(std::string upi_id, std::string transaction_id);
     OnlinePayment();
     ~OnlinePayment();
 
-    string getupiid();
-    string gettransactionid();
+    std::string getUpiId() const;
+    std::string getTransactionId() const;
 
-    void setupiid(string upi_id);
-    void settransactionid(string transaction_id);
+    void setUpiId(const std::string& upi_id);
+    void setTransactionId(const std::string& transaction_id);
 
-    void processPayment(double amount);
-    void displayPaymentDetails();
-
+    void processPayment(double amount) override;
+    void displayPaymentDetails() const;
 };
 
 #endif // ONLINEPAYMENT_H

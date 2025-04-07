@@ -1,12 +1,14 @@
 #include "customer.h"
 
-Customer::Customer(string customer_name,string idproof,int age,string phnum)
+Customer::Customer(string customer_name, string idproof, int age, string phnum, Payment *payment)
 {
     m_customer_name=customer_name;
     m_idproof=idproof;
     m_age=age;
     m_phnum=phnum;
+    m_payment=payment;
 }
+
 Customer::Customer()
 {
     cout<<"Customer constructor called"<<endl;
@@ -30,4 +32,17 @@ int Customer::getAge()
 string Customer::getPhnum()
 {
     return m_phnum;
+}
+void Customer::setCustomerDetails(string customer_name, string idproof, int age, string phnum)
+{
+    m_customer_name=customer_name;
+    m_idproof=idproof;
+    m_age=age;
+    m_phnum=phnum;
+}
+void Customer::showCustomerWithPayment()
+{
+    cout << "Name: " << m_customer_name << ", Age: " << m_age << ", Phone: " << m_phnum << endl;
+    if (m_payment)
+        m_payment->displayPaymentDetails();
 }

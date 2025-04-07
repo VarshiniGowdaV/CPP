@@ -11,6 +11,7 @@ SOURCES += \
         loginmanagement.cpp \
         main.cpp \
         onlinepayment.cpp \
+        payment.cpp \
         rentalbike.cpp \
         rentalcar.cpp \
         rentalvehicledetails.cpp \
@@ -24,6 +25,7 @@ HEADERS += \
     fileoperation.h \
     loginmanagement.h \
     onlinepayment.h \
+    payment.h \
     rentalbike.h \
     rentalcar.h \
     rentalvehicledetails.h \

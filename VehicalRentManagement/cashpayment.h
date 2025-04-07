@@ -1,19 +1,23 @@
 #ifndef CASHPAYMENT_H
 #define CASHPAYMENT_H
 
-class CashPayment
-{
-private :
+#include "Payment.h"
+#include <iostream>
+
+class CashPayment : public Payment {
+private:
     double m_amount;
+
 public:
     CashPayment(double amount);
     CashPayment();
     ~CashPayment();
 
-    double getamount();
-    void setamount(double amount);
+    double getAmount() const;
+    void setAmount(double amount);
 
-    void displayPayment();
+    void processPayment(double amount) override;
+    void displayPayment() const;
 };
 
 #endif // CASHPAYMENT_H

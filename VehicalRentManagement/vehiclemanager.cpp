@@ -45,49 +45,65 @@ void VehicleManager::addCar()
     carlist.push_back(RentalCar(number,brand,model,rentPrice,status));
     file.writeCarData(carlist);
 }
-void  VehicleManager::BookBike()
-{
+void VehicleManager::BookBike() {
     bikelist = file.readBikeData();
     string number;
-    cout<<"Enter Bike number to Book: ";
-    cin>>number;
+    cout << "Enter Bike number to Book: ";
+    cin >> number;
 
-    for(auto i=bikelist.begin();i!=bikelist.end();i++)
-    {
-        if(i->getvehicalNumber()==number && i->getstatus() == "Available")
-        {
-        string name,idproof,phnum;
-        int age;
-        cout<<"Enter customer name: ";
-        cin>>name;
-        cout<<"Enter customer idProof: ";
-        cin>>idproof;
-        cout<<"Enter customer age: ";
-        cin>>age;
-        cout<<"Enter customer phnum: ";
-        cin>>phnum;
-        Customer customerlist(name,idproof,age,phnum);
-        i->setrentstatus("Booked");
-        file.writeBikeData(bikelist);
-        //customerlist.push_back(Customer(name,idproof,age,phnum));
-        //file.writeCustomerdatabike(customerlist);
-        cout<<"Bike booked successfully bike no:  "<<number <<endl;
-        return;
+    for (auto& bike : bikelist) {
+        if (bike.getvehicalNumber() == number && bike.getstatus() == "Available") {
+            string name, idproof, phnum;
+            int age;
+            cout << "Enter customer name: ";
+            cin >> name;
+            cout << "Enter customer ID proof: ";
+            cin >> idproof;
+            cout << "Enter age: ";
+            cin >> age;
+            cout << "Enter phone number: ";
+            cin >> phnum;
+
+            int paymentType;
+            cout << "Select Payment Type (1: Cash, 2: Online): ";
+            cin >> paymentType;
+
+            Payment* payment = nullptr;
+            if (paymentType == 1) {
+                double amount;
+                cout << "Enter cash amount: ";
+                cin >> amount;
+                payment = new CashPayment(amount);
+            } else if (paymentType == 2) {
+                string upi, txn;
+                cout << "Enter UPI ID: ";
+                cin >> upi;
+                cout << "Enter Transaction ID: ";
+                cin >> txn;
+                payment = new OnlinePayment(upi, txn);
+            }
+
+            Customer customer(name, idproof, age, phnum, payment);
+            customer.showCustomerWithPayment();
+
+            bike.setrentstatus("Booked");
+            file.writeBikeData(bikelist);
+
+            cout << "Bike booked successfully for: " << name << endl;
+            return;
+        }
     }
-        cout<<"Bike not available or incorrect number!"<<endl;
-    }
+    cout << "Bike not available or incorrect number!" << endl;
 }
-void VehicleManager::BookCar()
-{
+
+void VehicleManager::BookCar() {
     carlist = file.readCarData();
     string number;
     cout << "Enter Car Number to Book: ";
     cin >> number;
 
-    for (auto i = carlist.begin(); i != carlist.end(); i++)
-    {
-        if (i->getvehicalNumber() == number && i->getstatus() == "Available")
-        {
+    for (auto& car : carlist) {
+        if (car.getvehicalNumber() == number && car.getstatus() == "Available") {
             string name, idProof, phone;
             int age;
 
@@ -100,16 +116,38 @@ void VehicleManager::BookCar()
             cout << "Enter Phone Number: ";
             cin >> phone;
 
-            Customer customerList(name, idProof, age, phone);
+            int paymentType;
+            cout << "Select Payment Type (1: Cash, 2: Online): ";
+            cin >> paymentType;
 
-            i->getvehicalNumber(), i->getbrand(),i->getmodel(), i->getrentprice(), i->getstatus(), "Booked";
+            Payment* payment = nullptr;
+            if (paymentType == 1) {
+                double amount;
+                cout << "Enter cash amount: ";
+                cin >> amount;
+                payment = new CashPayment(amount);
+            } else if (paymentType == 2) {
+                string upi, txn;
+                cout << "Enter UPI ID: ";
+                cin >> upi;
+                cout << "Enter Transaction ID: ";
+                cin >> txn;
+                payment = new OnlinePayment(upi, txn);
+            }
 
-            cout << "Car Booked Successfully for " << name << endl;
+            Customer customer(name, idProof, age, phone, payment);
+            customer.showCustomerWithPayment();
+
+            car.setrentstatus("Booked");
+            file.writeCarData(carlist);
+
+            cout << "Car booked successfully for: " << name << endl;
             return;
         }
     }
     cout << "Car not available or incorrect number!" << endl;
 }
+
 
 void VehicleManager::ReturnCar()
 {
@@ -220,7 +258,7 @@ void VehicleManager::updateCarPrice()
 }
 void VehicleManager::deleteBike()
 {
-    bikelist = file.readBikeData();
+    //bikelist = file.readBikeData();
     cout << "Bike Delete function called" << endl;
     string vehicleNumber;
 
@@ -232,13 +270,13 @@ void VehicleManager::deleteBike()
         if (i->getvehicalNumber() == vehicleNumber && i->getstatus() != "booked")
         {
             bikelist.erase(i);
-            file.writeBikeData(bikelist);
+           file.writeBikeData(bikelist);
             cout << "Bike deleted successfully" << endl;
             return;
         }
     }
 
-    cout << "Bike with number " << vehicleNumber << " deleted found  is booked)." << endl;
+    cout << "Bike with number " << vehicleNumber << " deleted " << endl;
 }
 
 void VehicleManager::deleteCar()
@@ -373,10 +411,65 @@ void VehicleManager::sortcarbyPrice()
     file.writeCarData(carlist);
     displayCar();
 }
+
 void VehicleManager::alldetails()
 {
+    enum MainMenuOption {
+        ADD_VEHICLE = 1,
+        DISPLAY_VEHICLE,
+        UPDATE_RENT_PRICE,
+        RENT_VEHICLE,
+        PAYMENT,
+        RETURN_VEHICLE,
+        DELETE_VEHICLE,
+        SEARCH_VEHICLE,
+        SORT_VEHICLE_BY_STATUS,
+        SORT_VEHICLE_BY_PRICE,
+        EXIT_APPLICATION
+    };
 
-    //loginManagement.loginManagement();
+enum AddVehicleOption {
+    ADD_BIKE = 1,
+    ADD_CAR,
+    ADD_EXIT
+};
+
+enum UpdateRentOption {
+    UPDATE_BIKE_RENT = 1,
+    UPDATE_CAR_RENT
+};
+
+enum RentVehicleOption {
+    RENT_BIKE = 1,
+    RENT_CAR
+};
+
+enum PaymentOption {
+    ONLINE_PAYMENT = 1,
+    CASH_PAYMENT
+};
+
+enum ReturnVehicleOption {
+    RETURN_BIKE = 1,
+    RETURN_CAR
+};
+
+enum DeleteVehicleOption {
+    DELETE_BIKE = 1,
+    DELETE_CAR
+};
+
+enum SearchVehicleOption {
+    SEARCH_BIKE = 1,
+    SEARCH_CAR
+};
+
+enum SortVehicleOption {
+    SORT_BIKE = 1,
+    SORT_CAR
+};
+
+{
     int choice;
     while (true)
     {
@@ -389,14 +482,15 @@ void VehicleManager::alldetails()
         cout << " 6. Return Vehicle" << endl;
         cout << " 7. Delete Vehicle" << endl;
         cout << " 8. Search Vehicle" << endl;
-        cout << " 9. Sort Vehicle " <<endl;
-        cout << " 10. Exit" << endl;
+        cout << " 9. Sort Vehicle by Status" << endl;
+        cout << "10. Sort Vehicle by Price" << endl;
+        cout << "11. Exit" << endl;
         cout << " Enter your choice: ";
         cin >> choice;
 
         switch (choice)
         {
-        case 1:
+        case ADD_VEHICLE:
         {
             int addChoice;
             cout << "\n ADD VEHICLES " << endl;
@@ -408,27 +502,29 @@ void VehicleManager::alldetails()
 
             switch (addChoice)
             {
-            case 1:
+            case ADD_BIKE:
                 addBike();
                 break;
-            case 2:
+            case ADD_CAR:
                 addCar();
                 break;
-            case 3:
-                cout << "Exit " << endl;
+            case ADD_EXIT:
+                cout << "Exit" << endl;
                 break;
             default:
                 cout << "Invalid Choice" << endl;
                 break;
             }
+            break;
         }
-        break;
-        case 2:
+
+        case DISPLAY_VEHICLE:
             cout << "\n Display Vehicles " << endl;
             displayBike();
             displayCar();
             break;
-        case 3:
+
+        case UPDATE_RENT_PRICE:
         {
             int updateChoice;
             cout << "\n Update Rent Price " << endl;
@@ -436,15 +532,23 @@ void VehicleManager::alldetails()
             cout << " 2. Update Car Rent Price " << endl;
             cout << " Enter your choice: ";
             cin >> updateChoice;
-            if (updateChoice == 1)
+
+            switch (updateChoice)
+            {
+            case UPDATE_BIKE_RENT:
                 updateBikePrice();
-            else if (updateChoice == 2)
+                break;
+            case UPDATE_CAR_RENT:
                 updateCarPrice();
-            else
+                break;
+            default:
                 cout << "Invalid choice!" << endl;
+                break;
+            }
+            break;
         }
-        break;
-        case 4:
+
+        case RENT_VEHICLE:
         {
             int rentChoice;
             cout << "\n Rent Vehicle " << endl;
@@ -452,50 +556,65 @@ void VehicleManager::alldetails()
             cout << " 2. Rent a Car " << endl;
             cout << " Enter your choice: ";
             cin >> rentChoice;
-            if (rentChoice == 1)
+
+            switch (rentChoice)
+            {
+            case RENT_BIKE:
                 BookBike();
-            else if (rentChoice == 2)
+                break;
+            case RENT_CAR:
                 BookCar();
-            else
+                break;
+            default:
                 cout << "Invalid choice!" << endl;
+                break;
+            }
+            break;
         }
-        break;
-        case 5:
+
+        case PAYMENT:
         {
             int paymentChoice;
-            cout << "\n Payment Method " <<endl;
-            cout << " 1. Online Payment " <<endl;
-            cout << " 2. Cash Payment " <<endl;
+            cout << "\n Payment Method " << endl;
+            cout << " 1. Online Payment " << endl;
+            cout << " 2. Cash Payment " << endl;
             cout << " Enter your choice: ";
             cin >> paymentChoice;
-            if(paymentChoice == 1)
+
+            switch (paymentChoice)
             {
-                string upi_id,transaction_id;
+            case ONLINE_PAYMENT:
+            {
+                string upi_id, transaction_id;
                 double amount;
-                cout<<"Enter UPI ID: ";
-                cin>>upi_id;
-                cout<<"Enter Transaction_id: ";
-                cin>>transaction_id;
-                cout<<"Enter Payment Amount: ";
-                cin>>amount;
-                OnlinePayment online(upi_id,transaction_id);
+                cout << "Enter UPI ID: ";
+                cin >> upi_id;
+                cout << "Enter Transaction ID: ";
+                cin >> transaction_id;
+                cout << "Enter Payment Amount: ";
+                cin >> amount;
+                OnlinePayment online(upi_id, transaction_id);
                 online.processPayment(amount);
                 online.displayPaymentDetails();
+                break;
             }
-            else if(paymentChoice == 2)
+            case CASH_PAYMENT:
             {
                 double amount;
-                cout<<"Enter Payment Amount: ";
-                cin>>amount;
+                cout << "Enter Payment Amount: ";
+                cin >> amount;
                 CashPayment cash(amount);
                 cash.displayPayment();
+                break;
             }
-            else
-            {
-                cout<<"Invalid choice!"<<endl;
+            default:
+                cout << "Invalid choice!" << endl;
+                break;
             }
+            break;
         }
-        case 6:
+
+        case RETURN_VEHICLE:
         {
             int returnChoice;
             cout << "\n Return Vehicle " << endl;
@@ -503,15 +622,23 @@ void VehicleManager::alldetails()
             cout << " 2. Return a Car " << endl;
             cout << " Enter your choice: ";
             cin >> returnChoice;
-            if (returnChoice == 1)
+
+            switch (returnChoice)
+            {
+            case RETURN_BIKE:
                 ReturnBike();
-            else if (returnChoice == 2)
+                break;
+            case RETURN_CAR:
                 ReturnCar();
-            else
+                break;
+            default:
                 cout << "Invalid choice!" << endl;
+                break;
+            }
+            break;
         }
-        break;
-        case 7:
+
+        case DELETE_VEHICLE:
         {
             int deleteChoice;
             cout << "\n Delete Vehicle " << endl;
@@ -519,83 +646,108 @@ void VehicleManager::alldetails()
             cout << " 2. Delete a Car " << endl;
             cout << " Enter your choice: ";
             cin >> deleteChoice;
-            if (deleteChoice == 1)
+
+            switch (deleteChoice)
+            {
+            case DELETE_BIKE:
                 deleteBike();
-            else if (deleteChoice == 2)
+                break;
+            case DELETE_CAR:
                 deleteCar();
-            else
+                break;
+            default:
                 cout << "Invalid choice!" << endl;
+                break;
+            }
+            break;
         }
-        break;
-        case 8:
+
+        case SEARCH_VEHICLE:
         {
             int searchChoice;
-            std::cout << "\nSearch Vehicle " << std::endl;
-            std::cout << "1. Search a Bike" << std::endl;
-            std::cout << "2. Search a Car" << std::endl;
-            std::cout << "Enter your choice: ";
-            std::cin >> searchChoice;
+            string vehicleNumber;
 
-            std::string vehicleNumber;
+            cout << "\n Search Vehicle " << endl;
+            cout << " 1. Search a Bike " << endl;
+            cout << " 2. Search a Car " << endl;
+            cout << " Enter your choice: ";
+            cin >> searchChoice;
 
-            if (searchChoice == 1) {
-                std::cout << "Enter Bike Number: ";
-                std::cin >> vehicleNumber;
-                searchBike();
-            }
-            else if (searchChoice == 2) {
-                std::cout << "Enter Car Number: ";
-                std::cin >> vehicleNumber;
-                searchCar();
-            }
-            else {
-                std::cout << "Invalid Choice!" << std::endl;
-            }
-        }
-        break;
-        case 9:
-            cout<<"1.Bike"<<endl;
-            cout<<"2.Car"<<endl;
-            cout<<"enter choice"<<endl;
-            cin>>choice;
-            switch(choice)
+            switch (searchChoice)
             {
-            case 1:
-                 sortbikeStatus();
+            case SEARCH_BIKE:
+                cout << "Enter Bike Number: ";
+                cin >> vehicleNumber;
+                searchBike();
                 break;
-            case 2:
+            case SEARCH_CAR:
+                cout << "Enter Car Number: ";
+                cin >> vehicleNumber;
+                searchCar();
+                break;
+            default:
+                cout << "Invalid Choice!" << endl;
+                break;
+            }
+            break;
+        }
+
+        case SORT_VEHICLE_BY_STATUS:
+        {
+            int sortChoice;
+            cout << "Sort Vehicle by Status" << endl;
+            cout << " 1. Bike" << endl;
+            cout << " 2. Car" << endl;
+            cout << " Enter your choice: ";
+            cin >> sortChoice;
+
+            switch (sortChoice)
+            {
+            case SORT_BIKE:
+                sortbikeStatus();
+                break;
+            case SORT_CAR:
                 sortcarbyStatus();
                 break;
             default:
-                cout<<"Invalid choice"<<endl;
+                cout << "Invalid choice!" << endl;
                 break;
             }
             break;
-        case 10:
-            cout<<"1.Bike"<<endl;
-            cout<<"2.Car"<<endl;
-            cout<<"enter choice"<<endl;
-            cin>>choice;
-            switch(choice)
+        }
+
+        case SORT_VEHICLE_BY_PRICE:
+        {
+            int sortPriceChoice;
+            cout << "Sort Vehicle by Price" << endl;
+            cout << " 1. Bike" << endl;
+            cout << " 2. Car" << endl;
+            cout << " Enter your choice: ";
+            cin >> sortPriceChoice;
+
+            switch (sortPriceChoice)
             {
-            case 1:
+            case SORT_BIKE:
                 sortbikebyPrice();
                 break;
-            case 2:
+            case SORT_CAR:
                 sortcarbyPrice();
                 break;
             default:
-                cout<<"Invalid choice"<<endl;
+                cout << "Invalid choice!" << endl;
                 break;
             }
             break;
+        }
 
-        case 11:
+        case EXIT_APPLICATION:
             cout << "Exiting Application..." << endl;
             return;
+
         default:
             cout << "Invalid Choice" << endl;
             break;
         }
     }
+}
 }
