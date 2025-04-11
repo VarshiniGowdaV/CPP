@@ -10,6 +10,7 @@ Driver::Driver(string drivername, string drivernumber, string address)
     m_drivername=drivername;
     m_drivernumber=drivernumber;
     m_address=address;
+    cout<<"Driver parameter constructor called"<<endl;
 }
 Driver::~Driver()
 {

@@ -4,11 +4,13 @@
 #include "driver.h"
 #include <iostream>
 using namespace std;
+class Car;
 class Owner
 {
 private:
     string m_ownername;
     string m_ownernumber;
+    Car *m_car;
 public:
     Owner(string ownername,string ownernumber);
     Owner();
@@ -18,7 +20,7 @@ public:
     string getownernumber();
 
     void  setownerdetails(string ownername,string ownernumber);
-    void assignDrivertocar(Car *car,Driver * driver);
+    void assignDrivertocar(Driver * driver);
 };
 
 #endif // OWNER_H

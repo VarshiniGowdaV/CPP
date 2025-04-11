@@ -1,8 +1,8 @@
 #ifndef CAR_H
 #define CAR_H
+#include "driver.h"
 #include <iostream>
 using namespace std;
-class Driver;
 class Car
 {
 private:
@@ -11,8 +11,9 @@ private:
     string m_brand;
     Driver * m_assignedDriver;
 public:
-    Car(string carname,string carnumber,string brand);
+
     Car();
+    Car(string carname,string carnumber,string brand);
     ~Car();
 
     string getcarname();
@@ -20,7 +21,8 @@ public:
     string getbrand();
     Driver * getassigneddriver();
     void setcardetail(string carname,string carnumber,string brand);
-    void assignedDriver(Driver *driver);
+
+    void Driverforcar(Driver * d);
 };
 
 #endif // CAR_H

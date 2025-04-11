@@ -1,48 +1,47 @@
 #include "owner.h"
 
-Owner::Owner(string ownername, string ownernumber)
+Owner::Owner() : m_car(nullptr)
+{
+    cout << "Owner constructor called" << endl;
+}
+
+Owner::Owner( string ownername,  string ownernumber)
 {
     m_ownername=ownername;
     m_ownernumber=ownernumber;
+    cout << "Owner parameterized constructor called" << endl;
 }
-Owner::Owner()
-{
-    cout<<"Owner constructor called"<<endl;
-}
+
 Owner::~Owner()
 {
-    cout<<"owner destructor called"<<endl;
+    cout << "Owner destructor called" << endl;
 }
-string Owner::getownernumber()
-{
-    return m_ownernumber;
-}
+
 string Owner::getownername()
 {
     return m_ownername;
 }
-Driver * Car::getassigneddriver()
+
+string Owner::getownernumber()
 {
-    return m_assignedDriver;
+    return m_ownernumber;
 }
-void Owner::setownerdetails(string ownername, string ownernumber)
+
+void Owner::setownerdetails(string ownername,  string ownernumber)
 {
-    m_ownername=ownername;
-    m_ownernumber=ownernumber;
+    m_ownername = ownername;
+    m_ownernumber = ownernumber;
 }
-void Owner::assignDrivertocar(Car *car, Driver *driver)
+
+void Owner::assignDrivertocar(Driver* driver)
 {
-    if(car && driver)
+    cout << "AssignDriverToCar function called" << endl;
+    if (m_car)
     {
-        car->assignedDriver(driver);
-        cout<<"Driver  " <<driver->getdrivername() <<"  assigned to car "<<car->getcarname()<<endl;
+        m_car->Driverforcar(driver);
     }
     else
     {
-        cout<<"Invalid car or driver\n";
+        cout << "No car assigned to owner!" << endl;
     }
-}
-void Car::assignedDriver(Driver *driver)
-{
-    m_assignedDriver =driver;
 }
