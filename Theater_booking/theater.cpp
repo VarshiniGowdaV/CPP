@@ -16,10 +16,10 @@ Theater::~Theater()
 {
     cout<<"Theater destructor called"<<endl;
 }
-int Theater::getId()
-{
+int Theater::getId() const {
     return m_id;
 }
+
 void Theater::setId(int id)
 {
     m_id=id;

@@ -1,5 +1,6 @@
 #ifndef BOOK_H
 #define BOOK_H
+
 #include <iostream>
 using namespace std;
 
@@ -11,7 +12,7 @@ private:
     bool m_available;
 
 public:
-    Book(string title,string author, int id,bool available);
+    Book(string title, string author, int id, bool available);
     Book();
     ~Book();
 
@@ -20,7 +21,7 @@ public:
     string getauthor();
     bool getAvailable();
     void setAvailable(bool status);
-    void setbook(string title,string author, int id);
+    void setbook(string title, string author, int id);
 };
 
 #endif // BOOK_H

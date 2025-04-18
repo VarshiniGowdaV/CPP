@@ -1,48 +1,43 @@
 #include "book.h"
 
-Book::Book()
-{
+Book::Book() {
     cout << "Book default constructor called" << endl;
 }
 
-Book::Book(string title, string author, int id,bool available)
-{
+Book::Book(string title, string author, int id, bool available) {
     m_title = title;
-    m_author=author;
+    m_author = author;
     m_id = id;
-    m_available=available;
+    m_available = available;
     cout << "Book parameter constructor called" << endl;
 }
 
-Book::~Book()
-{
+Book::~Book() {
     cout << "Book destructor called" << endl;
 }
 
-string Book::gettitle()
-{
+string Book::gettitle() {
     return m_title;
 }
-string Book::getauthor()
-{
+
+string Book::getauthor() {
     return m_author;
 }
-int Book::getid()
-{
+
+int Book::getid() {
     return m_id;
 }
 
-void Book::setbook(string title,string author, int id)
-{
-    m_title = title;
-    m_author=author;
-    m_id = id;
-}
-bool Book::getAvailable()
-{
+bool Book::getAvailable() {
     return m_available;
 }
-void Book::setAvailable(bool status)
-{
+
+void Book::setAvailable(bool status) {
     m_available = status;
+}
+
+void Book::setbook(string title, string author, int id) {
+    m_title = title;
+    m_author = author;
+    m_id = id;
 }

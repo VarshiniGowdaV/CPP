@@ -13,7 +13,7 @@ public:
     ~Theater();
 
     int getId();
-    void setId(int id);
+    void setId(int m_id);
 
     bool book(int day);
     bool isBooked(int day);

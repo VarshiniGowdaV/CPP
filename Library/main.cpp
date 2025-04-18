@@ -6,10 +6,10 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     Librarian librarian("Pallavi");
-    Library library(&librarian);
+    Library library;
+
     Book book1("C++ Programming", "Balagurusamy", 101, true);
     Book book2("C programming", "Balagurusamy", 102, true);
     Book book3("Python", "Balagurusamy", 103, false);
@@ -26,9 +26,6 @@ int main()
 
     student.showBorrowedBooks();
 
-
-    string unavailableBook = "Algorithms";
-    librarian.issueBook(unavailableBook, student, library);
 
     return 0;
 }

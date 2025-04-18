@@ -1,21 +1,14 @@
 #include "library.h"
+#include <iostream>
+using namespace std;
 
-Library::Library()
-{
+Library::Library() {
     cout << "Library default constructor called" << endl;
 }
 
-Library::Library(Librarian* librarian)
-{
-    m_librarian = librarian;
-    cout << "Library parameter constructor called" << endl;
-}
-
-Library::~Library()
-{
+Library::~Library() {
     cout << "Library destructor called" << endl;
 }
-
 
 void Library::addBook(const Book& book) {
     m_booklist.push_back(book);

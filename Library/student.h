@@ -5,7 +5,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
 using namespace std;
 
 class Student {
@@ -20,12 +19,11 @@ public:
     ~Student();
 
     string getName();
-    void setStudentName( string& name);
+    void setStudentName(string& name);
     int getStudentId();
 
-
-    void requestBook( Book& book);
-    void showBorrowedBooks() ;
+    void requestBook(Book& book);
+    void showBorrowedBooks();
 };
 
 #endif // STUDENT_H
