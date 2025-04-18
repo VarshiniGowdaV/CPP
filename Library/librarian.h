@@ -6,27 +6,21 @@
 #include <string>
 #include "book.h"
 #include "student.h"
-
-using namespace std;
-
+#include "library.h"
+class Library;
 class Librarian {
 private:
-    string m_name;
-    vector<Book*> m_booklist;
+    std::string m_name;
 public:
     Librarian();
-    Librarian(string name);
+    Librarian(std::string name);
     ~Librarian();
 
-    string getname();
-    void setname(string name);
+    std::string getname();
+    void setname(std::string name);
 
-    Book* issueBook(vector<Book*>& booklist, string& title);
-    void addBook(Book* book);
-    void showBook();
-    void studentRequestBook(Student& student, string& title);
-    void processRequest(Student& student, const string& title);
-    void clearBooks();
+    Book* searchBook(std::string& title);
+    void issueBook(const std::string& bookName, Student& student, Library& library);
 };
 
 #endif

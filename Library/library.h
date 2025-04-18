@@ -5,18 +5,20 @@
 #include <vector>
 #include "student.h"
 #include "book.h"
+
 using namespace std;
-class Library
-{
+class Librarian;
+class Library {
 private:
-    Librarian *m_librarian;
-    vector<Book*> m_booklist;
+    Librarian* m_librarian;
+    std::vector<Book> m_booklist;
 public:
-    Library(Librarian * librarian);
+    Library(Librarian* librarian);
     Library();
     ~Library();
 
-
+    void addBook(const Book& book);
+    std::vector<Book>& getBooks();
 };
 
 #endif // LIBRARY_H

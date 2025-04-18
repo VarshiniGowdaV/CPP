@@ -1,88 +1,46 @@
 #include "librarian.h"
+using namespace std;
 
-Librarian::Librarian()
-{
-    cout << "Librarian default constructor called" << endl;
+Librarian::Librarian() {
+    cout << "Librarian constructor called" << endl;
 }
 
-Librarian::Librarian(string name)
-{
+Librarian::Librarian(string name) {
     m_name = name;
 }
 
-Librarian::~Librarian()
-{
-    clearBooks(); // Deletes books in m_booklist
+Librarian::~Librarian() {
     cout << "Librarian destructor called" << endl;
 }
 
-string Librarian::getname()
-{
+string Librarian::getname() {
     return m_name;
 }
 
-void Librarian::setname(string name)
-{
+void Librarian::setname(string name) {
     m_name = name;
 }
 
-Book* Librarian::issueBook(vector<Book*>& booklist, string& title)
-{
-    for (auto i = booklist.begin(); i != booklist.end(); ++i)
-    {
-        if ((*i)->gettitle() == title) {
-            Book* foundBook = *i;
-            booklist.erase(i);
-            cout << "Book \"" << title << "\" issued by Librarian " << m_name << endl;
-            return foundBook;
+Book* Librarian::searchBook(string& title) {
+    extern vector<Book> bookList;
+    for (auto& book : bookList) {
+        if (book.gettitle() == title) {
+            return &book;
         }
     }
-    cout << "Book \"" << title << "\" not available.\n";
     return nullptr;
 }
 
-void Librarian::addBook(Book* book)
-{
-    m_booklist.push_back(book);
-}
+void Librarian::issueBook(const std::string& bookName, Student& student, Library& library) {
+    std::vector<Book>& books = library.getBooks();
+    return;
 
-void Librarian::showBook()
-{
-    cout << "Books in library: " << endl;
-    if (m_booklist.empty())
-    {
-        cout << "No books available" << endl;
-        return;
-    }
-    for (Book* book : m_booklist)
-    {
-        cout << "- " << book->gettitle() << " (ID: " << book->getid() << ")\n";
-    }
-}
-
-void Librarian::studentRequestBook(Student& student, string& title)
-{
-    processRequest(student, title);
-}
-
-void Librarian::processRequest(Student& student, const string& title)
-{
-    for (auto i = m_booklist.begin(); i != m_booklist.end(); ++i)
-    {
-        if ((*i)->gettitle() == title)
-        {
-            cout << "Book \"" << title << "\" issued to " << student.getname() << " by " << m_name << endl;
-            delete *i;
-            m_booklist.erase(i);
-            return;
+    for (Book& book : books) {
+        if (book.gettitle() == bookName && book.getAvailable()) {
+            book.setAvailable(false);
+            student.showBorrowedBooks();
+            std::cout << "Book '" << bookName << "' issued to student.\n";
         }
     }
-    cout << "Book \"" << title << "\" not available in library." << endl;
-}
-
-void Librarian::clearBooks()
-{
-    for (Book* book : m_booklist)
-        delete book;
-    m_booklist.clear();
+    std::cout << "Book '" << bookName << "' is not available in library.\n";
 }

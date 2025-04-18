@@ -1,27 +1,34 @@
 #include <iostream>
+#include "book.h"
 #include "student.h"
 #include "librarian.h"
 #include "library.h"
-#include "book.h"
 
 using namespace std;
 
 int main()
 {
-    Librarian* librarian = new Librarian("Raju");
-    Library library(librarian);
+    Librarian librarian("Pallavi");
+    Library library(&librarian);
+    Book book1("C++ Programming", "Balagurusamy", 101, true);
+    Book book2("C programming", "Balagurusamy", 102, true);
+    Book book3("Python", "Balagurusamy", 103, false);
 
-    librarian->addBook(new Book("C++ programming", 101));
-    librarian->addBook(new Book("C Programming", 110));
-    librarian->addBook(new Book("Python", 116));
+    library.addBook(book1);
+    library.addBook(book2);
+    library.addBook(book3);
 
-    librarian->showBook();
+    string studentName = "Varshini";
+    Student student(1, studentName);
 
-    Student student1("Varshini");
-    librarian->processRequest(student1, "C Programming");
+    string requestedBook = "C programming";
+    librarian.issueBook(requestedBook, student, library);
 
-    librarian->clearBooks();
-    delete librarian;
+    student.showBorrowedBooks();
+
+
+    string unavailableBook = "Algorithms";
+    librarian.issueBook(unavailableBook, student, library);
 
     return 0;
 }

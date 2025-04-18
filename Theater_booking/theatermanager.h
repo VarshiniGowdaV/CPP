@@ -12,7 +12,7 @@ public:
     TheaterManager();
     ~TheaterManager();
 
-    void bookTheater(vector<Theater>& m_theaterlist,int id,int day);
+    bool bookTheater(vector<Theater>& theaters, int id, int day);
     void printStatus(vector<Theater>& m_theaterlist,int day);
 };
 

@@ -8,27 +8,33 @@ TheaterManager::~TheaterManager()
 {
     cout<<"TheaterManager destructor called"<<endl;
 }
-void TheaterManager::bookTheater(vector<Theater> &m_theaterlist, int id, int day)
+bool TheaterManager::bookTheater(vector<Theater>& m_theaterlist, int id, int day)
 {
-    if(id < 1 || id >= m_theaterlist.size())
+    if (id < 0 || id >= m_theaterlist.size())
     {
-        cout<<"Invalid theater ID.\n";
-        return;
+        cout << "Invalid theater ID.\n";
+        return false;
     }
-    if(m_theaterlist[id].book(day))
+    if (m_theaterlist[id].book(day))
     {
-        cout<<"Theater "<<id <<" successfully booked for April" <<day<<".\n";
+        cout << "Theater " << id << " successfully booked for April " << day << ".\n";
+        return true;
     }
     else
     {
-        cout<<"Theater "<<id<<" is already booked for April" <<day<<".\n";
+        cout << "Theater " << id << " is already booked for April " << day << ".\n";
+        return false;
     }
 }
+
 void TheaterManager::printStatus(vector<Theater> &m_theaterlist, int day)
 {
-    cout<<"Status on April"<<day<<":\n";
-    for(auto& t:m_theaterlist)
+    cout<<"Available Theaters on April "<<day<<":\n";
+    for(auto& t : m_theaterlist)
     {
-        cout<< " Theater "<<t.getId()<<": "<<(t.isBooked(day) ? "Booked" : "Available")<<"\n";
+        if(!t.isBooked(day))
+        {
+            cout<<"Theater "<<t.getId() <<":Available\n";
+        }
     }
 }

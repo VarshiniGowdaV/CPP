@@ -2,22 +2,46 @@
 
 Student::Student()
 {
-    cout<<"Student default constructor called"<<endl;
+    cout << "Student default constructor called" << endl;
 }
-Student::Student(string name)
+
+Student::Student(int studentId, string& name)
 {
-    m_name=name;
-    cout<<"Student parameter constructor called"<<endl;
+    m_studentId = studentId;
+    m_name = name;
+    cout << "Student parameter constructor called" << endl;
 }
+
 Student::~Student()
 {
-    cout<<"Student destructor called"<<endl;
+    cout << "Student destructor called" << endl;
 }
-string Student::getname()
+
+string Student::getName()
 {
     return m_name;
 }
-void Student ::setstudentname(string name)
+
+void Student::setStudentName(string& name)
 {
-    m_name=name;
+    m_name = name;
+}
+
+int Student::getStudentId()
+{
+    return m_studentId;
+}
+
+void Student::requestBook(Book& book)
+{
+    m_borrowedBooks.push_back(book);
+}
+
+void Student::showBorrowedBooks()
+{
+    cout << "Books Borrowed by " << m_name << " : \n";
+    for (auto& book : m_borrowedBooks)
+    {
+        cout << " - " << book.gettitle() << " by " << book.getauthor() << "\n";
+    }
 }

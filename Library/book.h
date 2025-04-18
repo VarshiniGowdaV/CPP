@@ -2,22 +2,25 @@
 #define BOOK_H
 #include <iostream>
 using namespace std;
-class Book
-{
+
+class Book {
 private:
     string m_title;
+    string m_author;
     int m_id;
+    bool m_available;
+
 public:
-    Book(string title,int id);
+    Book(string title,string author, int id,bool available);
     Book();
     ~Book();
 
     string gettitle();
     int getid();
-
-    void setbook(string title,int id);
-
-
+    string getauthor();
+    bool getAvailable();
+    void setAvailable(bool status);
+    void setbook(string title,string author, int id);
 };
 
 #endif // BOOK_H
