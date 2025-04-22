@@ -11,7 +11,7 @@ public:
     Library();
     ~Library();
 
-    void addBook(const Book& book);
+    //void addBook(const Book& book);
     std::vector<Book>& getBooks();
 };
 

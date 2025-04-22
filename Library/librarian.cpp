@@ -21,6 +21,9 @@ string Librarian::getname() {
 void Librarian::setname(string name) {
     m_name = name;
 }
+void Librarian::addBook(const Book& book) {
+    m_booklist.push_back(book);
+}
 
 void Librarian::issueBook(const std::string& bookName, Student& student, Library& library) {
     std::vector<Book>& books = library.getBooks();
@@ -35,4 +38,7 @@ void Librarian::issueBook(const std::string& bookName, Student& student, Library
     }
 
     std::cout << "Book '" << bookName << "' is not available in the library.\n";
+}
+std::vector<Book>& Librarian::getBooks() {
+    return m_booklist;
 }

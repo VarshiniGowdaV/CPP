@@ -14,9 +14,9 @@ int main() {
     Book book2("C programming", "Balagurusamy", 102, true);
     Book book3("Python", "Balagurusamy", 103, false);
 
-    library.addBook(book1);
-    library.addBook(book2);
-    library.addBook(book3);
+    librarian.addBook(book1);
+    librarian.addBook(book2);
+    librarian.addBook(book3);
 
     string studentName = "Varshini";
     Student student(1, studentName);
