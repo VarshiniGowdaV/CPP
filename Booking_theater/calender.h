@@ -1,16 +1,20 @@
-#ifndef CALENDER_H
-#define CALENDER_H
-#include <iostream>
-using namespace std;
-class Calender
+#ifndef CALENDAR_H
+#define CALENDAR_H
+
+class Calendar
 {
 public:
-    Calender();
-    ~Calender();
+    Calendar();
+    ~Calendar();
 
-    void PrintAprilCalendar(int year);
-    void CurrentDate();
-    void showDate(const std::string& dateStr);
+    void run();
+    void displayCurrentDate() const;
+
+private:
+    void displayCalendar(int month, int year) const;
+    int getStartDay(int month, int year) const;
+    int getDaysInMonth(int month, int year) const;
+    bool isLeapYear(int year) const;
 };
 
-#endif // CALENDER_H
+#endif

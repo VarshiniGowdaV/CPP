@@ -1,67 +1,94 @@
-#include "calender.h"
-#include "Date.h"
-#include "TheaterManager.h"
-#include "Theater.h"
-
 #include <iostream>
-#include <vector>
+#include <string>
+#include "Calender.h"
+#include "theatermanager.h"
+#include "Date.h"
 
-using namespace std;
+int main()
+{
+    Calendar calendar;
+    calendar.run();
 
-int main() {
-    Calender calender;
-    TheaterManager manager;
+    TheatreManager manager;
     int choice;
+
     do {
-        cout << "\nTheater Management System\n";
-        cout << "1. Book a Theater\n";
-        cout << "2. View Bookings on Date\n";
-        cout << "3. Show All Available Theaters on a Day\n";
-        cout << "4. Exit\n";
-        cout << "Enter choice: ";
-        cin >> choice;
+        std::cout << "\nTheater Management System\n";
+        std::cout << "1. Book a Theater\n";
+        std::cout << "2. View Bookings on Date\n";
+        std::cout << "3. Show Available Theaters\n";
+        std::cout << "4. Exit\n";
+        std::cout << "Enter choice: ";
+        std::cin >> choice;
 
-        if (choice == 1) {
-            calender.PrintAprilCalendar(2025);
-            calender.CurrentDate();
+        std::string dateInput;
+        if (choice == 1)
+        {
+            calendar.displayCurrentDate();
+            std::cout << "Enter date (DD-MM-YYYY): ";
+            std::cin >> dateInput;
 
-            string dateStr;
-            int id;
-            cout << "Enter date (DD-MM-YYYY): ";
-            cin >> dateStr;
-            cout << "Enter Theater ID (1-10): ";
-            cin >> id;
-
-            calender.showDate(dateStr);
-            bool success = manager.bookTheater(id, dateStr);
-            if (success) {
-                int day = stoi(dateStr.substr(0, 2));
-                vector<Theater>& theaters = manager.getTheaterList();
-                for (auto& t : theaters) {
-                    if (t.getId() == id) {
-                        t.bookDay(day);
-                        break;
-                    }
-                }
+            if (!Date::isValidFormat(dateInput)) {
+                std::cout << "Invalid format. Use DD-MM-YYYY.\n";
+                continue;
             }
-        } else if (choice == 2) {
-            calender.PrintAprilCalendar(2025);
-            calender.CurrentDate();
 
-            string dateStr;
-            cout << "Enter date to check bookings (DD-MM-YYYY): ";
-            cin >> dateStr;
-            manager.showBookings(dateStr);
-        } else if (choice == 3) {
-            calender.PrintAprilCalendar(2025);
-            calender.CurrentDate();
+            Date date = Date::fromString(dateInput);
+            if (!Date::isValidDate(date.getDay(), date.getMonth(), date.getYear())) {
+                std::cout << "Invalid date. Try again.\n";
+                continue;
+            }
 
-            int day;
-            cout << "Enter day of April to check availability: ";
-            cin >> day;
-            manager.printStatus(manager.getTheaterList(), day);
-        } else if (choice != 4) {
-            cout << "Invalid choice. Try again.\n";
+            Date currentDate = Date::getCurrentDate();
+            if (date < currentDate) {
+                std::cout << "Cannot book for past dates. Please choose today or a future date.\n";
+                continue;
+            }
+
+            int id;
+            std::cout << "Enter Theater ID (1-10): ";
+            std::cin >> id;
+            manager.bookTheater(id, date);
+        }
+        else if (choice == 2)
+        {
+            std::cout << "Enter date (DD-MM-YYYY): ";
+            std::cin >> dateInput;
+
+            if (!Date::isValidFormat(dateInput)) {
+                std::cout << "Invalid format. Use DD-MM-YYYY.\n";
+                continue;
+            }
+
+            Date date = Date::fromString(dateInput);
+            if (!Date::isValidDate(date.getDay(), date.getMonth(), date.getYear())) {
+                std::cout << "Invalid date. Try again.\n";
+                continue;
+            }
+
+            manager.showBookings(date);
+        }
+        else if (choice == 3)
+        {
+            std::cout << "Enter date (DD-MM-YYYY): ";
+            std::cin >> dateInput;
+
+            if (!Date::isValidFormat(dateInput)) {
+                std::cout << "Invalid format. Use DD-MM-YYYY.\n";
+                continue;
+            }
+
+            Date date = Date::fromString(dateInput);
+            if (!Date::isValidDate(date.getDay(), date.getMonth(), date.getYear())) {
+                std::cout << "Invalid date. Try again.\n";
+                continue;
+            }
+
+            manager.printAvailableTheaters(date);
+        }
+        else if (choice != 4)
+        {
+            std::cout << "Invalid choice. Try again.\n";
         }
 
     } while (choice != 4);

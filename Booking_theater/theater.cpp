@@ -1,34 +1,38 @@
-#include "Theater.h"
+
+#include "theater.h"
+#include <algorithm>
 #include <iostream>
 using namespace std;
-Theater::Theater(int id) {
-    m_id=id;
-    cout<<"Theater parameter constructor called"<<endl;
-}
 
-Theater::~Theater()
+Theatre::Theatre(int id) : m_id(id)
 {
-    cout<<"Theater destructor called"<<endl;
+    cout << "Theatre parameterized constructor called for ID " << id << endl;
 }
 
-int Theater::getId() const {
+Theatre::~Theatre()
+{
+    cout << "Theatre destructor called for ID " << m_id << endl;
+}
+
+int Theatre::getId() const
+{
     return m_id;
 }
 
-void Theater::setId(int id) {
-    m_id = id;
-}
-void Theater::bookDay(int day) {
-    bookedDays.push_back(day);
+void Theatre::bookDay(int day)
+{
+    if (!isBooked(day)) bookedDays.push_back(day);
 }
 
-bool Theater::isBooked(int day) const {
-    for (int d : bookedDays) {
-        if (d == day) return true;
-    }
-    return false;
+bool Theatre::isBooked(int day) const
+{
+    return std::find(bookedDays.begin(), bookedDays.end(), day) != bookedDays.end();
 }
-std::ostream& operator<<(std::ostream& os, const Theater& t) {
-    os << "Theater ID: " << t.m_id;
+
+std::ostream& operator<<(std::ostream& os, const Theatre& t)
+{
+    os << "Theater ID: " << t.m_id << "\nBooked Days: ";
+    if (t.bookedDays.empty()) os << "None";
+    else for (int d : t.bookedDays) os << d << " ";
     return os;
 }

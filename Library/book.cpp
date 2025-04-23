@@ -1,3 +1,4 @@
+
 #include "book.h"
 
 Book::Book() {
@@ -28,7 +29,8 @@ int Book::getid() {
     return m_id;
 }
 
-bool Book::getAvailable() {
+bool Book::getAvailable()
+{
     return m_available;
 }
 

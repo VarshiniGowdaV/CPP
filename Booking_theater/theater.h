@@ -1,22 +1,21 @@
-#ifndef THEATER_H
-#define THEATER_H
 
-#include <iostream>
+#ifndef THEATRE_H
+#define THEATRE_H
 #include <vector>
-class Theater {
+#include <iostream>
+
+class Theatre
+{
 private:
     int m_id;
-std::vector<int> bookedDays;
+    std::vector<int> bookedDays;
 public:
-    Theater(int id = -1);
-    ~Theater();
-
+    ~Theatre();
+    Theatre(int id = -1);
     int getId() const;
-    void setId(int id);
-
     void bookDay(int day);
     bool isBooked(int day) const;
-    friend std::ostream& operator<<(std::ostream& os, const Theater& t);
+    friend std::ostream& operator<<(std::ostream& os, const Theatre& t);
 };
 
 #endif

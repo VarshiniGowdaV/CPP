@@ -1,26 +1,28 @@
-#ifndef THEATERMANAGER_H
-#define THEATERMANAGER_H
 
-#include <iostream>
-#include <string>
+#ifndef THEATREMANAGER_H
+#define THEATREMANAGER_H
+#include "calender.h"
+#include "date.h"
+#include "theater.h"
 #include <map>
 #include <vector>
-#include <algorithm>
-#include "theater.h"
+#include <iostream>
+using namespace std;
+typedef int id;
+typedef string date;
 
-class TheaterManager {
+class TheatreManager
+{
 private:
-    std::map<int, Theater> m_theaters;
-    std::map<std::string, std::vector<int>> m_dateBookings;
-
+    map<int, Theatre*> m_theaters;
+    map<string, vector<int>> m_dateBookings;
 public:
-    TheaterManager();
-    ~TheaterManager();
-
-    std::map<int, Theater>& getTheaterList();
-    bool bookTheater(int id, const std::string& dateStr);
-    void showBookings(const std::string& dateStr) const;
-    void printStatus(std::vector<Theater>& m_theaterlist, int day);
+    TheatreManager();
+    ~TheatreManager();
+    bool bookTheater(int id, const Date& date);
+    void showBookings(const Date& date) const;
+    void printAvailableTheaters(const Date& date) const;
+    std::map<int, Theatre*>& getTheaters();
 };
 
-#endif // THEATERMANAGER_H
+#endif

@@ -1,3 +1,4 @@
+
 #ifndef THEATERMANAGER_H
 #define THEATERMANAGER_H
 

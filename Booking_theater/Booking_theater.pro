@@ -7,11 +7,15 @@ SOURCES += \
         calender.cpp \
         date.cpp \
         main.cpp \
+        month.cpp \
         theater.cpp \
-        theatermanager.cpp
+        theatermanager.cpp \
+        year.cpp
 
 HEADERS += \
     calender.h \
     date.h \
+    month.h \
     theater.h \
-    theatermanager.h
+    theatermanager.h \
+    year.h
