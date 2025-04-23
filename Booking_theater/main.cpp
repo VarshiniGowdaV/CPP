@@ -2,12 +2,13 @@
 #include <string>
 #include "Calender.h"
 #include "theatermanager.h"
-#include "Date.h"
+#include "date.h"
 
 int main()
 {
     Calendar calendar;
     calendar.run();
+     //calendar.displayCurrentDate();
 
     TheatreManager manager;
     int choice;
@@ -28,19 +29,22 @@ int main()
             std::cout << "Enter date (DD-MM-YYYY): ";
             std::cin >> dateInput;
 
-            if (!Date::isValidFormat(dateInput)) {
+            if (!Date::isValidFormat(dateInput))
+            {
                 std::cout << "Invalid format. Use DD-MM-YYYY.\n";
                 continue;
             }
 
             Date date = Date::fromString(dateInput);
-            if (!Date::isValidDate(date.getDay(), date.getMonth(), date.getYear())) {
+            if (!Date::isValidDate(date.getDay(), date.getMonth(), date.getYear()))
+            {
                 std::cout << "Invalid date. Try again.\n";
                 continue;
             }
 
             Date currentDate = Date::getCurrentDate();
-            if (date < currentDate) {
+            if (date < currentDate)
+            {
                 std::cout << "Cannot book for past dates. Please choose today or a future date.\n";
                 continue;
             }
@@ -55,13 +59,15 @@ int main()
             std::cout << "Enter date (DD-MM-YYYY): ";
             std::cin >> dateInput;
 
-            if (!Date::isValidFormat(dateInput)) {
+            if (!Date::isValidFormat(dateInput))
+            {
                 std::cout << "Invalid format. Use DD-MM-YYYY.\n";
                 continue;
             }
 
             Date date = Date::fromString(dateInput);
-            if (!Date::isValidDate(date.getDay(), date.getMonth(), date.getYear())) {
+            if (!Date::isValidDate(date.getDay(), date.getMonth(), date.getYear()))
+            {
                 std::cout << "Invalid date. Try again.\n";
                 continue;
             }
@@ -73,13 +79,15 @@ int main()
             std::cout << "Enter date (DD-MM-YYYY): ";
             std::cin >> dateInput;
 
-            if (!Date::isValidFormat(dateInput)) {
+            if (!Date::isValidFormat(dateInput))
+            {
                 std::cout << "Invalid format. Use DD-MM-YYYY.\n";
                 continue;
             }
 
             Date date = Date::fromString(dateInput);
-            if (!Date::isValidDate(date.getDay(), date.getMonth(), date.getYear())) {
+            if (!Date::isValidDate(date.getDay(), date.getMonth(), date.getYear()))
+            {
                 std::cout << "Invalid date. Try again.\n";
                 continue;
             }

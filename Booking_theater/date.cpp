@@ -6,9 +6,12 @@
 #include <ctime>
 using namespace std;
 
-Date::Date(int day, int month, int year) : m_day(day), m_month(month), m_year(year)
+Date::Date(int day, int month, int year)
 {
-    cout << "Date constructor called" << endl;
+    m_day=day;
+    m_month=month;
+    m_year=year;
+    //cout << "Date constructor called" << endl;
 }
 
 Date::Date(const std::string& dateStr)
@@ -18,11 +21,14 @@ Date::Date(const std::string& dateStr)
     int d, m, y;
     iss >> d >> sep1 >> m >> sep2 >> y;
 
-    if (sep1 == '-' && sep2 == '-' && isValidDate(d, m, y)) {
+    if (sep1 == '-' && sep2 == '-' && isValidDate(d, m, y))
+    {
         m_day = d;
         m_month = m;
         m_year = y;
-    } else {
+    }
+    else
+    {
         m_day = m_month = m_year = 0;
         cout << "Invalid date in constructor from string." << endl;
     }
@@ -55,7 +61,8 @@ bool Date::isValidDate(int day, int month, int year)
 
 Date Date::fromString(const std::string& dateStr)
 {
-    if (!isValidFormat(dateStr)) {
+    if (!isValidFormat(dateStr))
+    {
         cout << "Invalid date format. Please use DD-MM-YYYY." << endl;
         return Date(0, 0, 0);
     }
@@ -65,44 +72,48 @@ Date Date::fromString(const std::string& dateStr)
     char sep1, sep2;
     iss >> d >> sep1 >> m >> sep2 >> y;
 
-    if (!isValidDate(d, m, y)) {
+    if (!isValidDate(d, m, y))
+    {
         cout << "Invalid calendar date." << endl;
         return Date(0, 0, 0);
     }
 
     return Date(d, m, y);
 }
-
 std::string Date::toString() const
 {
-    std::ostringstream oss;
-    oss << std::setw(2) << std::setfill('0') << m_day << "-"
-        << std::setw(2) << std::setfill('0') << m_month << "-"
-        << m_year;
-    return oss.str();
-}
+        return std::to_string(m_day) + "-" + std::to_string(m_month) + "-" + std::to_string(m_year);
+    }
 
-int Date::getDay() const { return m_day; }
-int Date::getMonth() const { return m_month; }
-int Date::getYear() const { return m_year; }
+
+int Date::getDay() const
+{
+    return m_day;
+}
+int Date::getMonth() const
+{
+    return m_month;
+}
+int Date::getYear() const
+{
+    return m_year;
+}
 
 Date Date::getCurrentDate()
 {
-    time_t now = time(0);
-    tm* ltm = localtime(&now);
-    int d = ltm->tm_mday;
-    int m = ltm->tm_mon + 1;
-    int y = ltm->tm_year + 1900;
-    return Date(d, m, y);
+        // Fetch the current date without invoking the constructor message
+        time_t now = time(nullptr);
+        tm* localTime = localtime(&now);
+        return Date(localTime->tm_mday, localTime->tm_mon + 1, localTime->tm_year + 1900);
 }
-
 std::ostream& operator<<(std::ostream& os, const Date& dt)
 {
     os << dt.toString();
     return os;
 }
 
-bool Date::operator<(const Date& other) const {
+bool Date::operator<(const Date& other) const
+{
     if (m_year != other.m_year)
         return m_year < other.m_year;
     if (m_month != other.m_month)
