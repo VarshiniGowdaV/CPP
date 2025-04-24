@@ -2,114 +2,107 @@
 #include <iostream>
 #include <iomanip>
 #include <ctime>
-#include <conio.h>
-#include "date.h"
 
-using namespace std;
-
-Calendar::Calendar()
-{
-    cout << "Calendar constructor called" << endl;
+Calendar::Calendar(TheatreManager* mgr) {
+    Date today = Date::today();
+    currentMonth = today.toString()[3] == '0' ? today.toString()[4] - '0' : std::stoi(today.toString().substr(3,2));
+    currentYear = std::stoi(today.toString().substr(6));
+    manager = mgr;
 }
 
-Calendar::~Calendar()
-{
-    cout << "Calendar destructor called" << endl;
-}
-
-bool Calendar::isLeapYear(int year) const
-{
-    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-}
-
-int Calendar::getDaysInMonth(int month, int year) const
-{
-    switch (month)
-    {
-    case 2: return isLeapYear(year) ? 29 : 28;
-    case 4: case 6: case 9: case 11: return 30;
-    default: return 31;
+void Calendar::nextMonth() {
+    if (++currentMonth > 12) {
+        currentMonth = 1;
+        ++currentYear;
     }
 }
 
-int Calendar::getStartDay(int month, int year) const
-{
-    tm firstDay = {};
-    firstDay.tm_mday = 1;
-    firstDay.tm_mon = month - 1;
-    firstDay.tm_year = year - 1900;
-    mktime(&firstDay);
-    return firstDay.tm_wday;
-}
-
-void Calendar::displayCalendar(int month, int year) const
-{
-    static const char* monthNames[] = {
-        "", "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    };
-
-    int startDay = getStartDay(month, year);
-    int totalDays = getDaysInMonth(month, year);
-
-    cout << "\n       " << monthNames[month] << " " << year << "\n";
-    cout << "  Sun  Mon  Tue  Wed  Thu  Fri  Sat\n";
-
-    for (int i = 0; i < startDay; ++i)
-    {
-        cout << "     ";
-    }
-    for (int day = 1; day <= totalDays; ++day)
-    {
-        cout << setw(5) << day;
-        if ((day + startDay) % 7 == 0) cout << "\n";
+void Calendar::prevMonth() {
+    if (--currentMonth < 1) {
+        currentMonth = 12;
+        --currentYear;
     }
 }
 
-void Calendar::run()
-{
-    time_t now = time(nullptr);
-    tm* localTime = localtime(&now);
-    int month = localTime->tm_mon + 1;
-    int year = localTime->tm_year + 1900;
-    char ch;
+// void Calendar::showCalendar() const {
+//     std::string monthNames[] = { "", "January", "February", "March", "April", "May", "June",
+//                                 "July", "August", "September", "October", "November", "December" };
 
-    do {
-        system("cls");
-        displayCalendar(month, year);
-        Date currentDate = Date::getCurrentDate();
-        std::cout << "\nCurrent Date: " << currentDate.toString() << "\n";
-        std::cout << "\n<- Previous Month     -> Next Month     ESC to Exit\n";
+//     std::cout << "\n" << monthNames[currentMonth] << " " << currentYear << "\n";
+//     std::cout << "  Sun     Mon     Tue     Wed     Thu     Fri     Sat\n";
 
-        ch = _getch();
-        if (ch == 0 || ch == -32) {
-            ch = _getch();
-            if (ch == 75) {
-                --month;
-                if (month < 1) {
-                    month = 12;
-                    --year;
-                }
-            }
-            else if (ch == 77) {
-                ++month;
-                if (month > 12) {
-                    month = 1;
-                    ++year;
-                }
-            }
+//     Date first(1, currentMonth, currentYear);
+//     std::tm t = {};
+//     t.tm_mday = 1;
+//     t.tm_mon = currentMonth - 1;
+//     t.tm_year = currentYear - 1900;
+//     std::mktime(&t);
+//     int startDay = t.tm_wday;
+
+//     int days = Date::daysInMonth(currentMonth, currentYear);
+//     int printed = 0;
+
+//     for (int i = 0; i < startDay; ++i) {
+//         std::cout << "         ";
+//         ++printed;
+//     }
+
+//     for (int d = 1; d <= days; ++d) {
+//         Date curr(d, currentMonth, currentYear);
+//         std::string dateStr = curr.toString();
+//         bool booked = !manager->isAvailable(dateStr, "T1");
+
+//         if (booked) {
+//             std::cout << "         ";
+//         } else {
+//             std::cout << std::setw(2) << d << "/10" << "   ";
+//         }
+
+//         ++printed;
+//         if (printed % 7 == 0) std::cout << "\n";
+//     }
+//     std::cout << "\n";
+// }
+void Calendar::showCalendar() const {
+    std::string monthNames[] = { "", "January", "February", "March", "April", "May", "June",
+                                "July", "August", "September", "October", "November", "December" };
+
+    std::cout << "\n" << monthNames[currentMonth] << " " << currentYear << "\n";
+    std::cout << "  Sun     Mon     Tue     Wed     Thu     Fri     Sat\n";
+
+    std::tm t = {};
+    t.tm_mday = 1;
+    t.tm_mon = currentMonth - 1;
+    t.tm_year = currentYear - 1900;
+    std::mktime(&t);
+    int startDay = t.tm_wday;
+
+    int days = Date::daysInMonth(currentMonth, currentYear);
+    int printed = 0;
+    const int totalTheatres = 10;
+
+    for (int i = 0; i < startDay; ++i) {
+        std::cout << "         ";
+        ++printed;
+    }
+
+    for (int d = 1; d <= days; ++d) {
+        Date curr(d, currentMonth, currentYear);
+        std::string dateStr = curr.toString();
+        std::vector<std::string> booked = manager->getBookedTheatres(dateStr);
+        int available = totalTheatres - booked.size();
+
+        if (available == 0) {
+            std::cout << "         "; // fully booked — show blank
+        } else {
+            std::ostringstream oss;
+            oss << std::setw(2) << d << "/" << available;
+            std::cout << std::setw(8) << oss.str();
         }
-    } while (ch != 27);
+
+        ++printed;
+        if (printed % 7 == 0) std::cout << "\n";
+    }
+    std::cout << "\n";
 }
 
-void Calendar::displayCurrentDate() const
-{
-    time_t now = time(nullptr);
-    tm* localTime = localtime(&now);
-    int day = localTime->tm_mday;
-    int month = localTime->tm_mon + 1;
-    int year = localTime->tm_year + 1900;
-
-    cout << "Current date: " << setw(2) << setfill('0') << day << "-"
-         << setw(2) << setfill('0') << month << "-" << year << endl << endl;
-}
