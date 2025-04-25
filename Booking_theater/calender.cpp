@@ -36,7 +36,7 @@ void Calendar::showCalendar() const {
                                 "July", "August", "September", "October", "November", "December" };
 
     std::cout << "\n" << monthNames[currentMonth] << " " << currentYear << "\n";
-    std::cout << "  Sun     Mon     Tue     Wed     Thu     Fri     Sat\n";
+    std::cout << "      Sun     Mon     Tue     Wed     Thu     Fri     Sat\n";
 
     std::tm t = {};
     t.tm_mday = 1;
@@ -49,7 +49,7 @@ void Calendar::showCalendar() const {
     int printed = 0;
 
     for (int i = 0; i < startDay; ++i) {
-        std::cout << "         ";
+        std::cout <<"        ";
         ++printed;
     }
 
