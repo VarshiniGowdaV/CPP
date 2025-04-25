@@ -1,23 +1,23 @@
-
 #include "calender.h"
 #include <iostream>
 #include <iomanip>
 #include <ctime>
 
-Calendar::Calendar(TheatreManager* mgr) {
+Calendar::Calendar(TheaterManager* mgr) {
     Date today = Date::today();
-    currentMonth = today.toString()[3] == '0' ? today.toString()[4] - '0' : std::stoi(today.toString().substr(3,2));
+    currentMonth = today.toString()[3] == '0' ? today.toString()[4] - '0' : std::stoi(today.toString().substr(3, 2));
     currentYear = std::stoi(today.toString().substr(6));
     manager = mgr;
 }
-Calendar::Calendar()
-{
-    std::cout<<"Calender constructor called"<<std::endl;
+
+Calendar::Calendar() {
+    std::cout << "Calendar constructor called" << std::endl;
 }
-Calendar::~Calendar()
-{
-    std::cout<<"Calender destructor called"<<std::endl;
+
+Calendar::~Calendar() {
+    std::cout << "Calendar destructor called" << std::endl;
 }
+
 void Calendar::nextMonth() {
     if (++currentMonth > 12) {
         currentMonth = 1;
@@ -47,7 +47,6 @@ void Calendar::showCalendar() const {
 
     int days = Date::daysInMonth(currentMonth, currentYear);
     int printed = 0;
-    const int totalTheatres = 10;
 
     for (int i = 0; i < startDay; ++i) {
         std::cout << "         ";
@@ -58,13 +57,15 @@ void Calendar::showCalendar() const {
         Date curr(d, currentMonth, currentYear);
         std::string dateStr = curr.toString();
         std::vector<std::string> booked = manager->getBookedTheatres(dateStr);
-        int available = totalTheatres - booked.size();
+        int bookedCount = booked.size();
 
-        if (available == 0) {
-            std::cout << "         ";
+        if (bookedCount > 0) {
+            std::ostringstream oss;
+            oss << std::setw(2) << d << "/" << bookedCount;
+            std::cout << std::setw(8) << oss.str();
         } else {
             std::ostringstream oss;
-            oss << std::setw(2) << d << "/" << available;
+            oss << std::setw(2) << d;
             std::cout << std::setw(8) << oss.str();
         }
 

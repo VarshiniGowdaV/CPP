@@ -8,9 +8,9 @@
 class Calendar {
     int currentMonth;
     int currentYear;
-    TheatreManager* manager;
+    TheaterManager* manager;
 public:
-    Calendar(TheatreManager* mgr);
+    Calendar(TheaterManager* mgr);
     Calendar();
     ~Calendar();
     void showCalendar() const;
