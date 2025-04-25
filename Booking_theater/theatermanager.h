@@ -1,7 +1,8 @@
+
 #ifndef THEATREMANAGER_H
 #define THEATREMANAGER_H
 
-#include "Date.h"
+#include "date.h"
 #include <map>
 #include <vector>
 #include <string>

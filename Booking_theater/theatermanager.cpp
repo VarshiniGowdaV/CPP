@@ -1,3 +1,4 @@
+
 #include "theatermanager.h"
 
 void TheatreManager::bookTheatre(const std::string& dateStr, const std::string& theatreId) {

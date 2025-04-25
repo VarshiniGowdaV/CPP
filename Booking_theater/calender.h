@@ -11,6 +11,8 @@ class Calendar {
     TheatreManager* manager;
 public:
     Calendar(TheatreManager* mgr);
+    Calendar();
+    ~Calendar();
     void showCalendar() const;
     void nextMonth();
     void prevMonth();

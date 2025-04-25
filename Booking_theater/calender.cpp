@@ -1,3 +1,4 @@
+
 #include "calender.h"
 #include <iostream>
 #include <iomanip>
@@ -9,7 +10,14 @@ Calendar::Calendar(TheatreManager* mgr) {
     currentYear = std::stoi(today.toString().substr(6));
     manager = mgr;
 }
-
+Calendar::Calendar()
+{
+    std::cout<<"Calender constructor called"<<std::endl;
+}
+Calendar::~Calendar()
+{
+    std::cout<<"Calender destructor called"<<std::endl;
+}
 void Calendar::nextMonth() {
     if (++currentMonth > 12) {
         currentMonth = 1;
@@ -23,46 +31,6 @@ void Calendar::prevMonth() {
         --currentYear;
     }
 }
-
-// void Calendar::showCalendar() const {
-//     std::string monthNames[] = { "", "January", "February", "March", "April", "May", "June",
-//                                 "July", "August", "September", "October", "November", "December" };
-
-//     std::cout << "\n" << monthNames[currentMonth] << " " << currentYear << "\n";
-//     std::cout << "  Sun     Mon     Tue     Wed     Thu     Fri     Sat\n";
-
-//     Date first(1, currentMonth, currentYear);
-//     std::tm t = {};
-//     t.tm_mday = 1;
-//     t.tm_mon = currentMonth - 1;
-//     t.tm_year = currentYear - 1900;
-//     std::mktime(&t);
-//     int startDay = t.tm_wday;
-
-//     int days = Date::daysInMonth(currentMonth, currentYear);
-//     int printed = 0;
-
-//     for (int i = 0; i < startDay; ++i) {
-//         std::cout << "         ";
-//         ++printed;
-//     }
-
-//     for (int d = 1; d <= days; ++d) {
-//         Date curr(d, currentMonth, currentYear);
-//         std::string dateStr = curr.toString();
-//         bool booked = !manager->isAvailable(dateStr, "T1");
-
-//         if (booked) {
-//             std::cout << "         ";
-//         } else {
-//             std::cout << std::setw(2) << d << "/10" << "   ";
-//         }
-
-//         ++printed;
-//         if (printed % 7 == 0) std::cout << "\n";
-//     }
-//     std::cout << "\n";
-// }
 void Calendar::showCalendar() const {
     std::string monthNames[] = { "", "January", "February", "March", "April", "May", "June",
                                 "July", "August", "September", "October", "November", "December" };
@@ -93,7 +61,7 @@ void Calendar::showCalendar() const {
         int available = totalTheatres - booked.size();
 
         if (available == 0) {
-            std::cout << "         "; // fully booked — show blank
+            std::cout << "         ";
         } else {
             std::ostringstream oss;
             oss << std::setw(2) << d << "/" << available;
@@ -105,4 +73,3 @@ void Calendar::showCalendar() const {
     }
     std::cout << "\n";
 }
-
